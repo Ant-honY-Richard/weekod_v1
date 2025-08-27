@@ -114,7 +114,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
                   transition={{ delay: 0.2, duration: 0.5 }}
                   className="text-white text-lg md:text-xl font-medium mb-4 leading-relaxed font-manrope"
                 >
-                  "{testimonials[currentIndex].quote}"
+                  &ldquo;{testimonials[currentIndex].quote}&rdquo;
                 </motion.blockquote>
                 
                 <motion.div

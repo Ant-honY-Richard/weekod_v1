@@ -21,7 +21,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ setCurrentPage }) => {
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white" style={{ textShadow: "0 0 15px rgba(0, 243, 255, 0.5)" }}>About Weekod</h1>
             <p className="text-xl text-gray-300 mb-8">
-              We're a passionate team of developers and AI experts dedicated to transforming your digital dreams into reality.
+              We&apos;re a passionate team of developers and AI experts dedicated to transforming your digital dreams into reality.
             </p>
             <p className="text-gray-400 max-w-3xl mx-auto">
               Founded with the vision of combining cutting-edge AI technology with human creativity, Weekod represents the future of web development. Our young, energetic team brings fresh perspectives and innovative solutions to every project.
@@ -188,7 +188,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ setCurrentPage }) => {
           >
             <h2 className="text-3xl font-bold mb-6 text-white">Ready to Work Together?</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's discuss your project and see how we can bring your vision to life with our unique blend of AI and human creativity.
+              Let&apos;s discuss your project and see how we can bring your vision to life with our unique blend of AI and human creativity.
             </p>
             <motion.button 
               onClick={() => setCurrentPage?.('contact')}

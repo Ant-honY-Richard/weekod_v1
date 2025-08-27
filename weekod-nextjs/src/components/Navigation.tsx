@@ -210,4 +210,6 @@ const Navigation: React.FC<NavigationProps> = memo(({
   );
 });
 
+Navigation.displayName = 'Navigation';
+
 export default Navigation;

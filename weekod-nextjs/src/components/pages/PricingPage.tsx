@@ -112,7 +112,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ setCurrentPage }) => {
           >
             <h2 className="text-3xl font-bold mb-4 text-white">Frequently Asked Questions</h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              Got questions? We've got answers.
+              Got questions? We&apos;ve got answers.
             </p>
           </motion.div>
 
@@ -166,7 +166,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ setCurrentPage }) => {
           >
             <h2 className="text-3xl font-bold mb-6 text-white">Ready to Get Started?</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Choose your package and let's bring your vision to life with our AI-powered approach.
+              Choose your package and let&apos;s bring your vision to life with our AI-powered approach.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <motion.button 

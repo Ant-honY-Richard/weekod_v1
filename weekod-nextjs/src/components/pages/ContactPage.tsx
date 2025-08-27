@@ -326,13 +326,13 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
                 textShadow: "0 0 30px rgba(0, 243, 255, 0.5)"
               }}
             >
-              Let's Build Something Amazing
+              Let&apos;s Build Something Amazing
             </h1>
             <p className="text-xl md:text-2xl text-white mb-8 font-manrope">
               Ready to transform your ideas into digital reality? Start the conversation.
             </p>
             <p className="text-gray-400 max-w-3xl mx-auto text-lg">
-              Whether you have a clear plan or just a spark of an idea, we're here to help you bring it to life with our unique blend of AI and human creativity.
+              Whether you have a clear plan or just a spark of an idea, we&apos;re here to help you bring it to life with our unique blend of AI and human creativity.
             </p>
           </motion.div>
         </div>
@@ -589,7 +589,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
                           <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
                           <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
                           <option value="₹1,00,000+">₹1,00,000+</option>
-                          <option value="Let's discuss">Let's discuss</option>
+                          <option value="Let's discuss">Let&apos;s discuss</option>
                         </select>
                       </div>
                     </motion.div>

@@ -24,7 +24,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
               Showcasing our latest projects and client success stories
             </p>
             <p className="text-gray-400 max-w-3xl mx-auto">
-              From startups to established businesses, we've helped clients across various industries transform their digital presence with our AI-powered solutions.
+              From startups to established businesses, we&apos;ve helped clients across various industries transform their digital presence with our AI-powered solutions.
             </p>
           </motion.div>
         </div>
@@ -91,7 +91,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
           >
             <h2 className="text-3xl font-bold mb-4 text-white">What Our Clients Say</h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              Don't just take our word for it - hear from the clients who've experienced our AI-powered approach
+              Don&apos;t just take our word for it - hear from the clients who&apos;ve experienced our AI-powered approach
             </p>
           </motion.div>
 
@@ -117,7 +117,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
                     <p className="text-[#00F3FF] text-sm">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-gray-300 italic">"{testimonial.quote}"</p>
+                <p className="text-gray-300 italic">&ldquo;{testimonial.quote}&rdquo;</p>
                 <div className="flex mt-4">
                   {[...Array(5)].map((_, i) => (
                     <svg key={i} className="w-5 h-5 text-[#39FF14]" fill="currentColor" viewBox="0 0 20 20">
@@ -142,7 +142,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
           >
             <h2 className="text-3xl font-bold mb-6 text-white">Ready to Join Our Success Stories?</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's create something amazing together. Your project could be our next featured success story.
+              Let&apos;s create something amazing together. Your project could be our next featured success story.
             </p>
             <motion.button 
               onClick={() => setCurrentPage?.('contact')}
