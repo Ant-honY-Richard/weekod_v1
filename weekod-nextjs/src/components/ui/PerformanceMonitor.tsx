@@ -9,7 +9,14 @@ const PerformanceMonitor = () => {
       // Monitor Core Web Vitals
       const observer = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
-          console.log(`${entry.name}: ${entry.value}ms`);
+          const anyEntry = entry as any;
+          if ('value' in entry) {
+            console.log(`${anyEntry.name}: ${anyEntry.value}ms`);
+          } else if ('duration' in entry) {
+            console.log(`${anyEntry.name}: ${anyEntry.duration}ms`);
+          } else {
+            console.log(`${anyEntry.name}: ${anyEntry.startTime}ms`);
+          }
         });
       });
 
