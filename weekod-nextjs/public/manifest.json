@@ -1,0 +1,16 @@
+{
+  "name": "Weekod - AI-Powered Web Development",
+  "short_name": "Weekod",
+  "description": "Transform your digital presence with AI-powered web development",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A12",
+  "theme_color": "#00F3FF",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

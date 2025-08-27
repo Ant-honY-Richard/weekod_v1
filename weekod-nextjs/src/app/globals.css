@@ -1,0 +1,344 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+  
+  /* Responsive font scaling */
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    html {
+      font-size: 18px;
+    }
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-[#0A0A12] via-[#1a1a2e] to-[#16213e] text-white min-h-screen;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .glow-text {
+    /* Hardware acceleration and performance hints */
+    will-change: transform;
+    transform: translateZ(0);
+    /* Optimized glow effect - reduced complexity */
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
+    /* Fallback for older browsers */
+    filter: drop-shadow(0 0 4px rgba(0, 243, 255, 0.6));
+  }
+  
+  /* Mobile-optimized version with lighter effect */
+  @media (max-width: 768px) {
+    .glow-text {
+      /* Lighter glow for mobile performance */
+      text-shadow: 0 0 4px rgba(0, 243, 255, 0.6);
+      filter: none; /* Remove filter on mobile */
+    }
+  }
+  
+  /* Reduced motion preference support */
+  @media (prefers-reduced-motion: reduce) {
+    .glow-text {
+      text-shadow: none;
+      filter: none;
+      color: #00F3FF; /* Fallback solid color */
+    }
+  }
+  
+  /* Performance-first alternative - minimal glow */
+  .glow-text-minimal {
+    color: #00F3FF;
+    /* Single, lightweight text-shadow */
+    text-shadow: 0 0 4px rgba(0, 243, 255, 0.5);
+    /* Hardware acceleration */
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* Critical rendering optimization */
+  .glow-text-critical {
+    color: #00F3FF;
+    /* No effects for critical rendering path */
+    text-shadow: none;
+    filter: none;
+    /* Add glow after page load */
+    animation: addGlow 0.3s ease-out 0.5s forwards;
+  }
+  
+  @keyframes addGlow {
+    to {
+      text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
+    }
+  }
+  
+  .glow-border {
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#00F3FF] via-[#FF00FF] to-[#39FF14] bg-clip-text text-transparent;
+  }
+  
+  /* Performance optimized animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  /* Critical LCP animation - immediate visibility */
+  .animate-fade-in-fast {
+    opacity: 0;
+    animation: fadeInFast 0.15s ease-out forwards;
+    /* Critical rendering hints */
+    will-change: opacity;
+    transform: translateZ(0);
+  }
+  
+  /* Critical hero section optimization */
+  .hero-critical {
+    /* Ensure immediate visibility */
+    opacity: 1;
+    /* Hardware acceleration */
+    transform: translateZ(0);
+    will-change: transform;
+    /* Prevent layout shifts */
+    contain: layout style paint;
+    /* Minimal background for instant rendering */
+    background: #0A0A12;
+  }
+  
+  /* Progressive enhancement for hero background */
+  .hero-background-enhanced {
+    background: linear-gradient(135deg, #0A0A12 0%, #1a1a2e 50%, #16213e 100%);
+    animation: enhanceBackground 0.5s ease-out 1s forwards;
+  }
+  
+  @keyframes enhanceBackground {
+    from {
+      background: #0A0A12;
+    }
+    to {
+      background: linear-gradient(135deg, #0A0A12 0%, #1a1a2e 50%, #16213e 100%);
+    }
+  }
+  
+  /* Critical text rendering - no animation delay */
+  .text-critical {
+    opacity: 1 !important;
+    transform: translateZ(0);
+    will-change: auto;
+    /* Ensure text is immediately visible */
+    animation: none !important;
+    /* Force immediate rendering */
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* Ultra-critical hero text - bypasses all delays */
+  .hero-text-instant {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    /* Prevent any rendering delays */
+    will-change: auto !important;
+    contain: none !important;
+  }
+  
+  /* Apply critical text after a short delay to maintain UX */
+  .text-critical-delayed {
+    animation: fadeInFast 0.1s ease-out 0.05s forwards;
+  }
+  
+  /* Responsive visibility optimization - prevent hidden elements from affecting LCP */
+  @media (max-width: 767px) {
+    .hidden.md\:block {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      /* Remove from layout completely */
+      position: absolute !important;
+      left: -9999px !important;
+      width: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .md\:hidden {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      /* Remove from layout completely */
+      position: absolute !important;
+      left: -9999px !important;
+      width: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+    }
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+  
+  /* Hardware accelerated transforms */
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Optimized hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px) translateZ(0);
+  }
+  
+  /* Slow spin animation for team cards */
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInFast {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) translateZ(0); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) translateZ(0); 
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) translateZ(0); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateZ(0); 
+  }
+}
+
+@keyframes spin-slow {
+  from { 
+    transform: rotate(0deg); 
+  }
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00F3FF, #FF00FF);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #FF00FF, #39FF14);
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Prevent zoom on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  /* Better touch targets */
+  button, a {
+    min-height: 44px;
+  }
+  
+  /* Prevent text overflow */
+  h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Smaller scrollbar on mobile */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+/* Prevent horizontal scroll */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Custom utilities for mobile responsiveness */
+@layer utilities {
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+  
+  .heading-responsive {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .padding-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .margin-responsive {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+  
+  .safe-area-inset {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
