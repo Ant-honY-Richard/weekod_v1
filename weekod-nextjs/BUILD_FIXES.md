@@ -48,9 +48,9 @@
 
 ### 8. Date-fns Import Type Conflict
 **Error**: 'format' cannot be used as a value because it was exported using 'export type'
-**Fix**: Changed import strategy to avoid type/value conflicts
-- Changed from `import { format } from 'date-fns'` to `import * as dateFns from 'date-fns'`
-- Updated usage from `format()` to `dateFns.format()`
+**Fix**: Used aliased import to avoid naming conflicts
+- Changed from `import { format } from 'date-fns'` to `import { format as formatDate } from 'date-fns'`
+- Updated usage from `format()` to `formatDate()`
 - Applied to `/src/components/pages/BlogPostPage.tsx`
 
 ## ESLint Configuration Updated ✅
