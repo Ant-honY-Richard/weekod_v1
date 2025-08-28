@@ -23,14 +23,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['framer-motion', 'date-fns', 'fuse.js'],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
   },
   // Bundle analyzer in development
   ...(process.env.ANALYZE === 'true' && {
@@ -47,37 +39,25 @@ const nextConfig = {
       return config;
     },
   }),
-  // Turbopack configuration (updated for Next.js 15.5+)
-  turbopack: {
-    resolveAlias: {
-      // Add any aliases you need
-      '@': './src',
-    },
-    // Set the root directory to silence the warning
-    root: '.',
-  },
-  // Webpack configuration (fallback for non-Turbopack builds)
+  // Webpack configuration for optimizations
   webpack: (config, { dev, isServer }) => {
-    // Only apply webpack optimizations when not using Turbopack
-    if (process.env.TURBOPACK !== '1') {
-      // Optimize bundle size
-      if (!dev && !isServer) {
-        config.optimization.splitChunks = {
-          chunks: 'all',
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-            },
-            framerMotion: {
-              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-              name: 'framer-motion',
-              chunks: 'all',
-            },
+    // Optimize bundle size in production
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
           },
-        };
-      }
+          framerMotion: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: 'framer-motion',
+            chunks: 'all',
+          },
+        },
+      };
     }
     return config;
   },
@@ -123,8 +103,9 @@ const nextConfig = {
           },
         ],
       },
+      // Static assets caching - simplified pattern
       {
-        source: '/(.*\\.(js|css|woff|woff2|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|avif|ico))',
+        source: '/(.*)\\.(?:js|css|woff|woff2|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|avif|ico)$',
         headers: [
           {
             key: 'Cache-Control',
