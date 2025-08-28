@@ -32,6 +32,13 @@
 - Updated main page component to await params
 - Applied to `/app/blog/[slug]/page.tsx`
 
+### 6. Next.js Metadata Type Compatibility
+**Error**: Object literal may only specify known properties, and 'publishedTime' does not exist in type 'Metadata'
+**Fix**: Removed invalid metadata properties from main metadata object
+- Removed `publishedTime` and `modifiedTime` from root metadata (these are OpenGraph-specific)
+- Kept `publishedTime` and `modifiedTime` in `openGraph` section where they belong
+- Applied to `/app/blog/[slug]/page.tsx` generateMetadata function
+
 ## ESLint Configuration Updated ✅
 
 ### Updated `.eslintrc.json`
