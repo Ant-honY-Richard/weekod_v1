@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: false,
+    // Only fail on errors, not warnings
+    dirs: ['src'],
+  },
   images: {
     domains: ['placehold.co', 'videos.pexels.com', 'res.cloudinary.com'],
     formats: ['image/webp', 'image/avif'],

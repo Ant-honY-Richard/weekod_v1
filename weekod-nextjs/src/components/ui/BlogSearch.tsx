@@ -89,7 +89,7 @@ export default function BlogSearch({ onSearch }: BlogSearchProps) {
           >
             <div className="p-4">
               <p className="text-sm text-gray-400">
-                Searching for "{query}"...
+                Searching for &ldquo;{query}&rdquo;...
               </p>
             </div>
           </motion.div>

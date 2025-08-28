@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import NavigationRouter from '@/components/NavigationRouter';
 import Footer from '@/components/Footer';
@@ -41,7 +41,7 @@ export default function BlogPage() {
   });
 
   // Fetch blog data
-  const fetchBlogData = async (page = 1) => {
+  const fetchBlogData = useCallback(async (page = 1) => {
     try {
       setState(prev => ({ ...prev, loading: true, error: null }));
 
@@ -93,7 +93,7 @@ export default function BlogPage() {
         error: 'Failed to load blog posts. Please try again later.'
       }));
     }
-  };
+  }, [state.filters]);
 
   // Handle search
   const handleSearch = (query: string) => {
@@ -120,7 +120,7 @@ export default function BlogPage() {
   // Fetch data on component mount and filter changes
   useEffect(() => {
     fetchBlogData();
-  }, [state.filters]);
+  }, [fetchBlogData]);
 
   return (
     <motion.div
