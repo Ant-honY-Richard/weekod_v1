@@ -39,6 +39,13 @@
 - Kept `publishedTime` and `modifiedTime` in `openGraph` section where they belong
 - Applied to `/app/blog/[slug]/page.tsx` generateMetadata function
 
+### 7. PageType and Component Mapping Mismatch
+**Error**: Property 'blog' does not exist on type pageComponents object
+**Fix**: Removed 'blog' from PageType since blog uses separate routing
+- Blog functionality is handled by `/app/blog/page.tsx` and `/app/blog/[slug]/page.tsx`
+- Main app page components only handle single-page app navigation
+- Updated `PageType` in `/src/types/index.ts` to exclude 'blog'
+
 ## ESLint Configuration Updated ✅
 
 ### Updated `.eslintrc.json`

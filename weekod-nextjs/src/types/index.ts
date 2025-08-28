@@ -109,4 +109,4 @@ export interface BlogPagination {
   hasPrev: boolean;
 }
 
-export type PageType = 'home' | 'about' | 'services' | 'process' | 'portfolio' | 'pricing' | 'contact' | 'blog';
+export type PageType = 'home' | 'about' | 'services' | 'process' | 'portfolio' | 'pricing' | 'contact';
