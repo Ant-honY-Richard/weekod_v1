@@ -61,7 +61,7 @@ const nextConfig = {
     }
     return config;
   },
-  // Headers for caching and performance
+  // Headers for security and performance
   async headers() {
     return [
       {
@@ -96,16 +96,6 @@ const nextConfig = {
       },
       {
         source: '/_next/static/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      // Static assets caching - simplified pattern
-      {
-        source: '/(.*)\\.(?:js|css|woff|woff2|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|avif|ico)$',
         headers: [
           {
             key: 'Cache-Control',
