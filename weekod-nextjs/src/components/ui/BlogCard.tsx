@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BlogPost } from '@/types';
 // Simple date formatting utility to avoid date-fns import issues
 const formatDate = (date: Date, format: string): string => {
@@ -42,10 +43,14 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
           {/* Image */}
           <div className="lg:w-1/2 relative h-64 lg:h-auto">
             {post.featuredImage ? (
-              <img
+              <Image
                 src={post.featuredImage.url}
                 alt={post.featuredImage.alt}
+                width={600}
+                height={256}
                 className="w-full h-full object-cover"
+                quality={85}
+                priority={true}
               />
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-[#00F3FF]/20 to-[#FF00FF]/20 flex items-center justify-center">
@@ -96,6 +101,7 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
               <Link
                 href={`/blog/${post.slug}`}
                 className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#00F3FF] to-[#FF00FF] text-white font-medium rounded-lg hover:shadow-lg hover:shadow-[#00F3FF]/25 transition-all duration-300"
+                aria-label={`Read more about ${post.title}`}
               >
                 Read More
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,15 +121,23 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
       transition={{ duration: 0.3 }}
       className="group"
     >
-      <Link href={`/blog/${post.slug}`} className="block">
+      <Link 
+        href={`/blog/${post.slug}`} 
+        className="block"
+        aria-label={`Read article: ${post.title}`}
+      >
         <div className="bg-[#161B26] rounded-xl overflow-hidden border border-gray-700/50 hover:border-[#00F3FF]/30 transition-all duration-300 hover:shadow-lg hover:shadow-[#00F3FF]/10">
           {/* Image */}
           <div className="relative h-48 overflow-hidden">
             {post.featuredImage ? (
-              <img
+              <Image
                 src={post.featuredImage.url}
                 alt={post.featuredImage.alt}
+                width={400}
+                height={192}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                quality={80}
+                priority={featured}
               />
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-[#00F3FF]/20 to-[#FF00FF]/20 flex items-center justify-center">

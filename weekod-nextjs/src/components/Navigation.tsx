@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { memo, useMemo } from 'react';
+import Image from 'next/image';
 import { PageType } from '@/types';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
@@ -53,10 +54,14 @@ const Navigation: React.FC<NavigationProps> = memo(({
           onClick={() => handlePageChange('home')}
         >
           <div className="w-10 h-10 sm:w-12 sm:h-12 mr-3 flex items-center justify-center">
-            <img 
+            <Image 
               src="/favicon.svg" 
               alt="Weekod Logo" 
+              width={48}
+              height={48}
               className="w-full h-full object-contain"
+              priority={true}
+              quality={100}
             />
           </div>
           <span className="text-xl sm:text-2xl font-bold text-white">

@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true npm run build",
+    "optimize-images": "node scripts/optimize-images.js",
+    "performance": "npm run optimize-images && npm run analyze",
+    "performance-check": "node scripts/final-performance-check.js"
   },
   "dependencies": {
     "@types/three": "^0.179.0",
