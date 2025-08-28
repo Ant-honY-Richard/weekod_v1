@@ -12,7 +12,7 @@ import BlogSharePanel from '@/components/ui/BlogSharePanel';
 import BlogAuthorBio from '@/components/ui/BlogAuthorBio';
 import BlogNewsletter from '@/components/ui/BlogNewsletter';
 import { BlogPost } from '@/types';
-import { format } from 'date-fns';
+import * as dateFns from 'date-fns';
 import { pageVariants, pageTransition } from '@/data';
 import { analytics } from '@/lib/analytics';
 
@@ -21,8 +21,8 @@ interface BlogPostPageProps {
 }
 
 export default function BlogPostPage({ post }: BlogPostPageProps) {
-  const formattedDate = format(new Date(post.publishedAt), 'MMMM dd, yyyy');
-  const updatedDate = post.updatedAt ? format(new Date(post.updatedAt), 'MMMM dd, yyyy') : null;
+  const formattedDate = dateFns.format(new Date(post.publishedAt), 'MMMM dd, yyyy');
+  const updatedDate = post.updatedAt ? dateFns.format(new Date(post.updatedAt), 'MMMM dd, yyyy') : null;
 
   // Track blog post view
   useEffect(() => {

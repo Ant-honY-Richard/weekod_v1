@@ -46,6 +46,13 @@
 - Main app page components only handle single-page app navigation
 - Updated `PageType` in `/src/types/index.ts` to exclude 'blog'
 
+### 8. Date-fns Import Type Conflict
+**Error**: 'format' cannot be used as a value because it was exported using 'export type'
+**Fix**: Changed import strategy to avoid type/value conflicts
+- Changed from `import { format } from 'date-fns'` to `import * as dateFns from 'date-fns'`
+- Updated usage from `format()` to `dateFns.format()`
+- Applied to `/src/components/pages/BlogPostPage.tsx`
+
 ## ESLint Configuration Updated ✅
 
 ### Updated `.eslintrc.json`
