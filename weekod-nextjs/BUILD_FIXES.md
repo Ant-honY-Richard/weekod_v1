@@ -24,6 +24,14 @@
 - Added `await` when accessing params: `const { slug } = await params;`
 - Applied to all HTTP methods (GET, PUT, DELETE) in `/api/blog/posts/[slug]/route.ts`
 
+### 5. Next.js 15 Page Component Parameter Types
+**Error**: Type 'BlogPostPageProps' does not satisfy the constraint 'PageProps'
+**Fix**: Updated page component parameter types for Next.js 15 compatibility
+- Changed `params: { slug: string }` to `params: Promise<{ slug: string }>`
+- Updated `generateMetadata` function to await params
+- Updated main page component to await params
+- Applied to `/app/blog/[slug]/page.tsx`
+
 ## ESLint Configuration Updated ✅
 
 ### Updated `.eslintrc.json`
