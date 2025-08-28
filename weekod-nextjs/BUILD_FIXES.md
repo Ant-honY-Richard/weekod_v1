@@ -17,6 +17,13 @@
 **Error**: React Hook useEffect has missing dependencies: 'frag' and 'vert'
 **Fix**: Added `frag` and `vert` to the useEffect dependency array
 
+### 4. Next.js 15 API Route Parameter Types
+**Error**: Type "{ params: { slug: string; }; }" is not a valid type for the function's second argument
+**Fix**: Updated API route parameter types for Next.js 15 compatibility
+- Changed `{ params: { slug: string } }` to `{ params: Promise<{ slug: string }> }`
+- Added `await` when accessing params: `const { slug } = await params;`
+- Applied to all HTTP methods (GET, PUT, DELETE) in `/api/blog/posts/[slug]/route.ts`
+
 ## ESLint Configuration Updated ✅
 
 ### Updated `.eslintrc.json`

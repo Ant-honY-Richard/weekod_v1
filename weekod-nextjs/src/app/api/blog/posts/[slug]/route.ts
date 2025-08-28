@@ -3,10 +3,10 @@ import { getBlogPostsCollection } from '@/lib/mongodb-blog';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const collection = await getBlogPostsCollection();
 
     const post = await collection.findOne({
@@ -43,10 +43,10 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const body = await request.json();
     const collection = await getBlogPostsCollection();
 
@@ -87,10 +87,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const collection = await getBlogPostsCollection();
 
     const result = await collection.deleteOne({ slug });
