@@ -2,6 +2,16 @@
 
 import { useEffect } from 'react';
 
+// Type definitions for performance entries
+interface PerformanceEventTiming extends PerformanceEntry {
+  processingStart?: number;
+}
+
+interface LayoutShift extends PerformanceEntry {
+  value: number;
+  hadRecentInput: boolean;
+}
+
 /**
  * Performance Optimizer Component
  * Implements various performance optimizations to improve Core Web Vitals
@@ -141,7 +151,11 @@ const PerformanceOptimizer = () => {
       const fidObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
         entries.forEach(entry => {
-          console.log('FID:', entry.processingStart - entry.startTime);
+          // Type assertion for first-input entries
+          const fidEntry = entry as PerformanceEventTiming;
+          if (fidEntry.processingStart) {
+            console.log('FID:', fidEntry.processingStart - fidEntry.startTime);
+          }
         });
       });
       fidObserver.observe({ entryTypes: ['first-input'] });
@@ -151,8 +165,10 @@ const PerformanceOptimizer = () => {
         let clsValue = 0;
         const entries = list.getEntries();
         entries.forEach(entry => {
-          if (!entry.hadRecentInput) {
-            clsValue += entry.value;
+          // Type assertion for layout-shift entries
+          const clsEntry = entry as LayoutShift;
+          if (!clsEntry.hadRecentInput && clsEntry.value) {
+            clsValue += clsEntry.value;
           }
         });
         console.log('CLS:', clsValue);
