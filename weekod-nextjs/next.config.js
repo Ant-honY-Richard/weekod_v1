@@ -21,7 +21,8 @@ const nextConfig = {
   },
   // Experimental features for better performance
   experimental: {
-    optimizeCss: true,
+    // Temporarily disabled optimizeCss to fix critters dependency issue
+    // optimizeCss: true,
     optimizePackageImports: ['framer-motion', 'date-fns', 'fuse.js'],
   },
   // Bundle analyzer in development
