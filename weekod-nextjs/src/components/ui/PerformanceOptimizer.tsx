@@ -19,7 +19,7 @@ const PerformanceOptimizer = () => {
       document.head.appendChild(fontLink);
 
       // Preload critical images (if any)
-      const criticalImages = [
+      const criticalImages: string[] = [
         // Add any critical images here
       ];
 
