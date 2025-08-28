@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { memo, useMemo } from 'react';
 import { PageType } from '@/types';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 interface NavigationProps {
   currentPage: PageType;
@@ -19,6 +20,8 @@ const Navigation: React.FC<NavigationProps> = memo(({
   isMenuOpen,
   setIsMenuOpen
 }) => {
+  const { scrollToTop } = useSmoothScroll();
+  
   const navItems = useMemo(() => [
     { label: 'Home', value: 'home' as PageType },
     { label: 'About', value: 'about' as PageType },
@@ -28,6 +31,12 @@ const Navigation: React.FC<NavigationProps> = memo(({
     { label: 'Pricing', value: 'pricing' as PageType },
     { label: 'Contact', value: 'contact' as PageType }
   ], []);
+
+  const handlePageChange = (page: PageType) => {
+    setCurrentPage(page);
+    scrollToTop();
+    setIsMenuOpen(false);
+  };
 
   return (
     <motion.header 
@@ -41,10 +50,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
       <div className="container mx-auto px-4 sm:px-6 flex justify-between items-center">
         <div 
           className="flex items-center cursor-pointer group"
-          onClick={() => {
-            setCurrentPage('home');
-            setIsMenuOpen(false);
-          }}
+          onClick={() => handlePageChange('home')}
         >
           <div className="w-10 h-10 sm:w-12 sm:h-12 mr-3 flex items-center justify-center">
             <img 
@@ -63,7 +69,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
           {navItems.map((item) => (
             <motion.button 
               key={item.value} 
-              onClick={() => setCurrentPage(item.value)}
+              onClick={() => handlePageChange(item.value)}
               className={`font-medium relative text-sm xl:text-base ${
                 currentPage === item.value 
                   ? 'text-[#00F3FF]' 
@@ -97,7 +103,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
           {navItems.slice(0, 4).map((item) => (
             <motion.button 
               key={item.value} 
-              onClick={() => setCurrentPage(item.value)}
+              onClick={() => handlePageChange(item.value)}
               className={`font-medium relative text-xs ${
                 currentPage === item.value 
                   ? 'text-[#00F3FF]' 
@@ -123,10 +129,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
             boxShadow: "0 0 20px rgba(57, 255, 20, 0.7)"
           }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => {
-            setCurrentPage('contact');
-            setIsMenuOpen(false);
-          }}
+          onClick={() => handlePageChange('contact')}
           className="hidden lg:block bg-[#39FF14] hover:bg-[#2ecc0f] text-[#0A0A12] font-bold py-2 px-4 xl:py-2.5 xl:px-6 rounded-full transition-all relative overflow-hidden group text-sm xl:text-base"
         >
           <span className="relative z-10">Book Consultation</span>
@@ -173,10 +176,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
               {navItems.map((item) => (
                 <motion.button 
                   key={item.value} 
-                  onClick={() => {
-                    setCurrentPage(item.value);
-                    setIsMenuOpen(false);
-                  }}
+                  onClick={() => handlePageChange(item.value)}
                   className={`text-center py-3 px-2 font-medium rounded-lg border transition-all text-base sm:text-lg ${
                     currentPage === item.value 
                       ? 'text-[#00F3FF] bg-[#00F3FF]/10 border-[#00F3FF]/30' 
@@ -195,10 +195,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
                 boxShadow: "0 0 20px rgba(57, 255, 20, 0.7)"
               }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setCurrentPage('contact');
-                setIsMenuOpen(false);
-              }}
+              onClick={() => handlePageChange('contact')}
               className="w-full bg-[#39FF14] text-[#0A0A12] font-bold py-3 px-6 rounded-full relative overflow-hidden text-base sm:text-lg"
             >
               <span className="relative z-10">Book Consultation</span>

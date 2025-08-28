@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Space_Grotesk, Manrope } from 'next/font/google'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 import './globals.css'
 
 const inter = Inter({ 
@@ -87,6 +88,10 @@ export default function RootLayout({
         }} />
       </head>
       <body className={`${inter.className} ${spaceGrotesk.variable} ${manrope.variable}`}>
+        {/* Google Analytics */}
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
         {children}
       </body>
     </html>

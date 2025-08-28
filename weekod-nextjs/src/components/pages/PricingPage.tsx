@@ -3,12 +3,19 @@
 import { motion } from 'framer-motion';
 import { pricingPackages } from '@/data';
 import { PageType } from '@/types';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 interface PricingPageProps {
   setCurrentPage?: (page: PageType) => void;
 }
 
 const PricingPage: React.FC<PricingPageProps> = ({ setCurrentPage }) => {
+  const { scrollToTop } = useSmoothScroll();
+
+  const handlePageChange = (page: PageType) => {
+    setCurrentPage?.(page);
+    scrollToTop();
+  };
   return (
     <div className="bg-[#0A0A12]">
       <section className="py-20 bg-gradient-to-b from-[#0F0F1A] to-[#0A0A12]">
@@ -78,7 +85,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ setCurrentPage }) => {
                 </ul>
 
                 <motion.button
-                  onClick={() => setCurrentPage?.('contact')}
+                  onClick={() => handlePageChange('contact')}
                   whileHover={{ 
                     scale: 1.05,
                     boxShadow: pkg.popular 
@@ -170,7 +177,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ setCurrentPage }) => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <motion.button 
-                onClick={() => setCurrentPage?.('contact')}
+                onClick={() => handlePageChange('contact')}
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 0 25px rgba(57, 255, 20, 0.7)"
@@ -181,7 +188,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ setCurrentPage }) => {
                 Start Your Project
               </motion.button>
               <motion.button 
-                onClick={() => setCurrentPage?.('process')}
+                onClick={() => handlePageChange('process')}
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 0 20px rgba(0, 243, 255, 0.5)"

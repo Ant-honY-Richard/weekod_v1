@@ -3,12 +3,19 @@
 import { motion } from 'framer-motion';
 import { teamMembers } from '@/data';
 import { PageType } from '@/types';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 interface AboutPageProps {
   setCurrentPage?: (page: PageType) => void;
 }
 
 const AboutPage: React.FC<AboutPageProps> = ({ setCurrentPage }) => {
+  const { scrollToTop } = useSmoothScroll();
+
+  const handlePageChange = (page: PageType) => {
+    setCurrentPage?.(page);
+    scrollToTop();
+  };
   return (
     <div className="bg-[#0A0A12]">
       <section className="py-20 bg-gradient-to-b from-[#0F0F1A] to-[#0A0A12]">
@@ -191,7 +198,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ setCurrentPage }) => {
               Let&apos;s discuss your project and see how we can bring your vision to life with our unique blend of AI and human creativity.
             </p>
             <motion.button 
-              onClick={() => setCurrentPage?.('contact')}
+              onClick={() => handlePageChange('contact')}
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "0 0 25px rgba(57, 255, 20, 0.7)"

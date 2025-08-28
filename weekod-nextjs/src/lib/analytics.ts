@@ -91,6 +91,46 @@ class Analytics {
       timestamp: new Date().toISOString()
     });
   }
+
+  // Blog specific events
+  trackBlogPostView(postSlug: string, postTitle: string, category?: string) {
+    this.track('blog_post_view', {
+      post_slug: postSlug,
+      post_title: postTitle,
+      category: category,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  trackBlogSearch(query: string, resultsCount: number) {
+    this.track('blog_search', {
+      search_query: query,
+      results_count: resultsCount,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  trackBlogCategoryFilter(categories: string[]) {
+    this.track('blog_category_filter', {
+      selected_categories: categories,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  trackBlogShare(postSlug: string, platform: string) {
+    this.track('blog_share', {
+      post_slug: postSlug,
+      platform: platform,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  trackNewsletterSignup(source: string = 'blog') {
+    this.track('newsletter_signup', {
+      source: source,
+      timestamp: new Date().toISOString()
+    });
+  }
 }
 
 // Export singleton instance

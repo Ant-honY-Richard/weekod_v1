@@ -3,12 +3,19 @@
 import { motion } from 'framer-motion';
 import { portfolioItems, testimonials } from '@/data';
 import { PageType } from '@/types';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 interface PortfolioPageProps {
   setCurrentPage?: (page: PageType) => void;
 }
 
 const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
+  const { scrollToTop } = useSmoothScroll();
+
+  const handlePageChange = (page: PageType) => {
+    setCurrentPage?.(page);
+    scrollToTop();
+  };
   return (
     <div className="bg-[#0A0A12]">
       <section className="py-20 bg-gradient-to-b from-[#0F0F1A] to-[#0A0A12]">
@@ -145,7 +152,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
               Let&apos;s create something amazing together. Your project could be our next featured success story.
             </p>
             <motion.button 
-              onClick={() => setCurrentPage?.('contact')}
+              onClick={() => handlePageChange('contact')}
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "0 0 25px rgba(57, 255, 20, 0.7)"

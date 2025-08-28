@@ -3,12 +3,15 @@
 import { motion } from 'framer-motion';
 import { services } from '@/data';
 import { PageType } from '@/types';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 interface FooterProps {
   setCurrentPage?: (page: PageType) => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
+  const { scrollToTop } = useSmoothScroll();
+  
   const quickLinks: { label: string; value: PageType }[] = [
     { label: 'Home', value: 'home' },
     { label: 'About', value: 'about' },
@@ -17,6 +20,11 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
     { label: 'Portfolio', value: 'portfolio' },
     { label: 'Pricing', value: 'pricing' }
   ];
+
+  const handlePageChange = (page: PageType) => {
+    setCurrentPage?.(page);
+    scrollToTop();
+  };
 
   const socialLinks = [
     { 
@@ -98,7 +106,7 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
               {quickLinks.map((item) => (
                 <li key={item.value}>
                   <motion.button 
-                    onClick={() => setCurrentPage?.(item.value)}
+                    onClick={() => handlePageChange(item.value)}
                     className="text-gray-400 hover:text-[#00F3FF] transition-colors flex items-center"
                     whileHover={{ 
                       x: 5,
@@ -118,7 +126,7 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
               {services.map((service, index) => (
                 <li key={index}>
                   <motion.button 
-                    onClick={() => setCurrentPage?.('services')}
+                    onClick={() => handlePageChange('services')}
                     className="text-gray-400 hover:text-[#00F3FF] transition-colors flex items-center"
                     whileHover={{ 
                       x: 5,
