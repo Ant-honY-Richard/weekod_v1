@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { teamMembers } from '@/data';
 import { PageType } from '@/types';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
@@ -93,10 +94,13 @@ const AboutPage: React.FC<AboutPageProps> = ({ setCurrentPage }) => {
                       
                       {/* Image container */}
                       <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-[#00F3FF]/40 bg-gradient-to-br from-[#00F3FF]/20 to-[#39FF14]/20">
-                        <img 
+                        <Image 
                           src={member.image} 
                           alt={member.name}
+                          width={200}
+                          height={200}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          priority={false}
                         />
                         {/* Overlay gradient */}
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A12]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { services } from '@/data';
 import { PageType } from '@/types';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
@@ -72,10 +73,13 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
           <div>
             <div className="flex items-center mb-4">
               <div className="w-10 h-10 mr-2 flex items-center justify-center">
-                <img 
+                <Image 
                   src="/favicon.svg" 
                   alt="Weekod Logo" 
+                  width={40}
+                  height={40}
                   className="w-full h-full object-contain"
+                  priority={false}
                 />
               </div>
               <span className="text-xl font-bold">Weekod</span>

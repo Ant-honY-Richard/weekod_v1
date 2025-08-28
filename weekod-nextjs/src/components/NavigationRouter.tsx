@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { memo, useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const NavigationRouter: React.FC = memo(() => {
@@ -52,10 +53,13 @@ const NavigationRouter: React.FC = memo(() => {
       <div className="container mx-auto px-4 sm:px-6 flex justify-between items-center">
         <Link href="/" className="flex items-center cursor-pointer group">
           <div className="w-10 h-10 sm:w-12 sm:h-12 mr-3 flex items-center justify-center">
-            <img 
+            <Image 
               src="/favicon.svg" 
               alt="Weekod Logo" 
+              width={48}
+              height={48}
               className="w-full h-full object-contain"
+              priority={true}
             />
           </div>
           <span className="text-xl sm:text-2xl font-bold text-white">
