@@ -3,7 +3,19 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { BlogPost } from '@/types';
-import { format } from 'date-fns';
+// Simple date formatting utility to avoid date-fns import issues
+const formatDate = (date: Date, format: string): string => {
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  
+  if (format === 'MMM dd, yyyy') {
+    return `${months[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}, ${date.getFullYear()}`;
+  }
+  
+  return date.toLocaleDateString();
+};
 
 interface BlogCardProps {
   post: BlogPost;
@@ -11,7 +23,7 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, featured = false }: BlogCardProps) {
-  const formattedDate = format(new Date(post.publishedAt), 'MMM dd, yyyy');
+  const formattedDate = formatDate(new Date(post.publishedAt), 'MMM dd, yyyy');
 
   if (featured) {
     return (
