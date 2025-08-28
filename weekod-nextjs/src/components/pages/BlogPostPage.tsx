@@ -12,7 +12,19 @@ import BlogSharePanel from '@/components/ui/BlogSharePanel';
 import BlogAuthorBio from '@/components/ui/BlogAuthorBio';
 import BlogNewsletter from '@/components/ui/BlogNewsletter';
 import { BlogPost } from '@/types';
-import { format as formatDate } from 'date-fns';
+// Simple date formatting utility to avoid date-fns import issues
+const formatDate = (date: Date, format: string): string => {
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  
+  if (format === 'MMMM dd, yyyy') {
+    return `${months[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}, ${date.getFullYear()}`;
+  }
+  
+  return date.toLocaleDateString();
+};
 import { pageVariants, pageTransition } from '@/data';
 import { analytics } from '@/lib/analytics';
 

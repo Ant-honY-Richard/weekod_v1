@@ -47,10 +47,11 @@
 - Updated `PageType` in `/src/types/index.ts` to exclude 'blog'
 
 ### 8. Date-fns Import Type Conflict
-**Error**: 'format' cannot be used as a value because it was exported using 'export type'
-**Fix**: Used aliased import to avoid naming conflicts
-- Changed from `import { format } from 'date-fns'` to `import { format as formatDate } from 'date-fns'`
-- Updated usage from `format()` to `formatDate()`
+**Error**: 'formatDate' cannot be used as a value because it was exported using 'export type'
+**Fix**: Replaced date-fns import with custom date formatting utility
+- Removed problematic `import { format as formatDate } from 'date-fns'`
+- Created inline `formatDate` utility function for 'MMMM dd, yyyy' format
+- Avoids all TypeScript type/value import conflicts
 - Applied to `/src/components/pages/BlogPostPage.tsx`
 
 ## ESLint Configuration Updated ✅
