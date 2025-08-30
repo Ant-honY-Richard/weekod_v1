@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import NavigationRouter from '@/components/NavigationRouter';
+import NavigationFixed from '@/components/NavigationFixed';
 import Footer from '@/components/Footer';
 import BlogCard from '@/components/ui/BlogCard';
 import BlogSearch from '@/components/ui/BlogSearch';
@@ -131,7 +131,13 @@ export default function BlogPage() {
       transition={pageTransition}
       className="min-h-screen bg-gradient-to-br from-[#0A0A12] via-[#1a1a2e] to-[#16213E] text-white"
     >
-      <NavigationRouter />
+      <NavigationFixed 
+        currentPage="home"
+        setCurrentPage={() => {}}
+        scrolled={false}
+        isMenuOpen={false}
+        setIsMenuOpen={() => {}}
+      />
       
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">

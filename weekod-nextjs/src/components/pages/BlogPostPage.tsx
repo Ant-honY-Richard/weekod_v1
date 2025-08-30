@@ -6,12 +6,15 @@ import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
-import NavigationRouter from '@/components/NavigationRouter';
+import NavigationFixed from '@/components/NavigationFixed';
 import Footer from '@/components/Footer';
 import BlogSharePanel from '@/components/ui/BlogSharePanel';
 import BlogAuthorBio from '@/components/ui/BlogAuthorBio';
 import BlogNewsletter from '@/components/ui/BlogNewsletter';
 import { BlogPost } from '@/types';
+import { pageVariants, pageTransition } from '@/data';
+import { analytics } from '@/lib/analytics';
+
 // Simple date formatting utility to avoid date-fns import issues
 const formatDate = (date: Date, format: string): string => {
   const months = [
@@ -25,8 +28,6 @@ const formatDate = (date: Date, format: string): string => {
   
   return date.toLocaleDateString();
 };
-import { pageVariants, pageTransition } from '@/data';
-import { analytics } from '@/lib/analytics';
 
 interface BlogPostPageProps {
   post: BlogPost;
@@ -54,7 +55,13 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
       transition={pageTransition}
       className="min-h-screen bg-gradient-to-br from-[#0A0A12] via-[#1a1a2e] to-[#16213E] text-white"
     >
-      <NavigationRouter />
+      <NavigationFixed 
+        currentPage="home"
+        setCurrentPage={() => {}}
+        scrolled={false}
+        isMenuOpen={false}
+        setIsMenuOpen={() => {}}
+      />
       
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">

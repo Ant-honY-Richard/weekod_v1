@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { PageType } from '@/types';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
-interface NavigationProps {
+interface NavigationFixedProps {
   currentPage: PageType;
   setCurrentPage: (page: PageType) => void;
   scrolled: boolean;
@@ -13,7 +13,7 @@ interface NavigationProps {
   setIsMenuOpen: (open: boolean) => void;
 }
 
-const Navigation: React.FC<NavigationProps> = memo(({
+const NavigationFixed: React.FC<NavigationFixedProps> = memo(({
   currentPage,
   setCurrentPage,
   scrolled,
@@ -41,7 +41,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-500 ${
-        scrolled ? 'bg-[#0A0A12]/90 backdrop-blur-md py-2 sm:py-3 shadow-[0_0_30px_rgba(0,243,255,0.2)]' : 'bg-transparent py-3 sm:py-4'
+        scrolled ? 'bg-[#0A0A12]/90 backdrop-blur-md py-2 sm:py-3' : 'bg-transparent py-3 sm:py-4'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 flex justify-between items-center">
@@ -71,7 +71,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
             <button 
               key={item.value} 
               onClick={() => handlePageChange(item.value)}
-              className={`font-medium relative text-sm xl:text-base transition-transform hover:scale-105 ${
+              className={`font-medium relative text-sm xl:text-base transition-colors hover:scale-105 ${
                 currentPage === item.value 
                   ? 'text-[#00F3FF]' 
                   : scrolled ? 'text-gray-300 hover:text-[#00F3FF]' : 'text-white hover:text-[#00F3FF]'
@@ -93,7 +93,7 @@ const Navigation: React.FC<NavigationProps> = memo(({
             <button 
               key={item.value} 
               onClick={() => handlePageChange(item.value)}
-              className={`font-medium relative text-xs transition-transform hover:scale-105 ${
+              className={`font-medium relative text-xs transition-colors hover:scale-105 ${
                 currentPage === item.value 
                   ? 'text-[#00F3FF]' 
                   : scrolled ? 'text-gray-300 hover:text-[#00F3FF]' : 'text-white hover:text-[#00F3FF]'
@@ -172,6 +172,6 @@ const Navigation: React.FC<NavigationProps> = memo(({
   );
 });
 
-Navigation.displayName = 'Navigation';
+NavigationFixed.displayName = 'NavigationFixed';
 
-export default Navigation;
+export default NavigationFixed;

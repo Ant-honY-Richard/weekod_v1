@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Space_Grotesk, Manrope } from 'next/font/google'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
-import PerformanceOptimizer from '@/components/ui/PerformanceOptimizer'
+// import PerformanceOptimizer from '@/components/ui/PerformanceOptimizer'
 import './globals.css'
 
 const inter = Inter({ 
@@ -110,17 +110,7 @@ export default function RootLayout({
               visibility: visible !important;
               display: block !important;
             }
-            /* Navigation critical styles */
-            nav {
-              position: fixed;
-              top: 0;
-              left: 0;
-              right: 0;
-              z-index: 50;
-              background: rgba(10, 10, 18, 0.95);
-              backdrop-filter: blur(10px);
-            }
-            /* Prevent layout shift */
+                        /* Prevent layout shift */
             .container {
               max-width: 1200px;
               margin: 0 auto;
@@ -145,8 +135,8 @@ export default function RootLayout({
         }} />
       </head>
       <body className={`${inter.className} ${spaceGrotesk.variable} ${manrope.variable}`}>
-        {/* Performance Optimizer */}
-        <PerformanceOptimizer />
+        {/* Performance Optimizer (temporarily disabled for debugging) */}
+        {/* <PerformanceOptimizer /> */}
         
         {/* Google Analytics */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (

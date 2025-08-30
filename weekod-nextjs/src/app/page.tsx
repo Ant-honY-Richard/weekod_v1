@@ -1,18 +1,19 @@
 'use client';
 
-import { useState, lazy, Suspense } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { PageType } from '@/types';
 import { pageVariants, pageTransition } from '@/data';
 import { useOptimizedScroll } from '@/hooks/useOptimizedScroll';
 
 // Import critical components immediately
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import HomePage from '@/components/pages/HomePage';
-import PerformanceMonitor from '@/components/ui/PerformanceMonitor';
-import ResourcePreloader from '@/components/ui/ResourcePreloader';
-import ServiceWorkerRegistration from '@/components/ui/ServiceWorkerRegistration';
+import NavigationFixed from '@/components/NavigationFixed';
+import dynamic from 'next/dynamic';
+
+const ServiceWorkerRegistration = dynamic(() => import('@/components/ui/ServiceWorkerRegistration'), { ssr: false });
+const ResourcePreloader = dynamic(() => import('@/components/ui/ResourcePreloader'), { ssr: false });
+const PerformanceMonitor = dynamic(() => import('@/components/ui/PerformanceMonitor'), { ssr: false });
 
 // Lazy load non-critical page components
 const AboutPage = lazy(() => import('@/components/pages/AboutPage'));
@@ -36,6 +37,19 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const scrolled = useOptimizedScroll(50);
+  const [helpersReady, setHelpersReady] = useState(false);
+
+  useEffect(() => {
+    const schedule = (cb: () => void) => {
+      if ('requestIdleCallback' in window) {
+        // @ts-ignore
+        requestIdleCallback(cb, { timeout: 2000 });
+      } else {
+        setTimeout(cb, 1200);
+      }
+    };
+    schedule(() => setHelpersReady(true));
+  }, []);
 
   const renderPage = () => {
     const pageComponents = {
@@ -77,10 +91,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <ServiceWorkerRegistration />
-      <ResourcePreloader />
-      <PerformanceMonitor />
-      <Navigation 
+      {helpersReady && (
+        <>
+          <ServiceWorkerRegistration />
+          <ResourcePreloader />
+          <PerformanceMonitor />
+        </>
+      )}
+      <NavigationFixed 
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         scrolled={scrolled}
@@ -89,18 +107,9 @@ export default function App() {
       />
       
       <main className="pt-14 sm:pt-16 lg:pt-20">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentPage}
-            variants={pageVariants}
-            initial="initial"
-            animate="in"
-            exit="out"
-            transition={pageTransition}
-          >
-            {renderPage()}
-          </motion.div>
-        </AnimatePresence>
+        <div>
+          {renderPage()}
+        </div>
       </main>
       
       <Footer setCurrentPage={setCurrentPage} />
