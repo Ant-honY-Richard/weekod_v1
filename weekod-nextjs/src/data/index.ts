@@ -1,4 +1,4 @@
-import { Service, ProcessStep, Testimonial, PortfolioItem, TeamMember, PricingPackage } from '@/types';
+import { Service, ProcessStep, Testimonial, PortfolioItem, TeamMember, PricingPackage, PricingCategory, ComparisonTable } from '@/types';
 
 export const services: Service[] = [
   {
@@ -137,8 +137,9 @@ export const teamMembers: TeamMember[] = [
 
 export const pricingPackages: PricingPackage[] = [
   {
-    name: "Starter",
-    price: "₹25,000",
+    name: "Basic",
+    price: "₹24,999",
+    originalPrice: "₹39,999",
     features: [
       "Professional website (up to 5 pages)",
       "Mobile-first responsive design",
@@ -150,11 +151,15 @@ export const pricingPackages: PricingPackage[] = [
       "Rapid turnaround (1-2 weeks)",
       "1 month post-launch maintenance"
     ],
-    popular: false
+    popular: false,
+    bestFor: "Small businesses & startups",
+    paymentOptions: ["Full payment", "50% advance, 50% on completion"],
+    deliveryTime: "7-14 days"
   },
   {
     name: "Growth",
-    price: "₹55,000",
+    price: "₹54,999",
+    originalPrice: "₹74,999",
     features: [
       "Custom website (up to 12 pages; blog/news ready)",
       "AI-enhanced prototyping & smart content",
@@ -166,11 +171,15 @@ export const pricingPackages: PricingPackage[] = [
       "Premium analytics dashboard",
       "3 months continued support + content updates"
     ],
-    popular: true
+    popular: true,
+    bestFor: "Growing businesses & established brands",
+    paymentOptions: ["Full payment (5% discount)", "3 monthly installments", "50% advance, 50% on completion"],
+    deliveryTime: "14-21 days"
   },
   {
-    name: "Scale/Custom",
-    price: "From ₹1,00,000",
+    name: "Enterprise",
+    price: "₹99,999",
+    originalPrice: "₹1,49,999",
     features: [
       "Tailored solutions for complex/e-commerce/app needs",
       "Bespoke UI/UX design with strategy consulting",
@@ -182,7 +191,33 @@ export const pricingPackages: PricingPackage[] = [
       "Ongoing strategic support & growth audits",
       "Full lifecycle maintenance"
     ],
-    popular: false
+    popular: false,
+    bestFor: "Enterprises & e-commerce businesses",
+    paymentOptions: ["Full payment (10% discount)", "Custom payment schedule", "Milestone-based payments"],
+    deliveryTime: "30-45 days"
+  }
+];
+
+export const faqData = [
+  {
+    question: "How long does it take to build a website?",
+    answer: "Our typical timeline is 7-14 days for basic websites and 14-21 days for more complex projects. This includes design, development, testing, and launch. We provide regular updates throughout the process."
+  },
+  {
+    question: "Do you provide ongoing support after launch?",
+    answer: "Yes! All our packages include post-launch support. Basic packages include 1 month of support, Growth packages include 3 months, and Enterprise packages include full lifecycle maintenance."
+  },
+  {
+    question: "Can you work with existing branding and design guidelines?",
+    answer: "Absolutely! We can work with your existing brand assets, style guides, and design requirements. Our AI-assisted design process can adapt to any brand identity while maintaining consistency."
+  },
+  {
+    question: "What makes your AI-powered approach different?",
+    answer: "We combine AI tools for rapid prototyping and iteration with human expertise for refinement and customization. This allows us to deliver high-quality results faster while maintaining the personal touch and creativity that only humans can provide."
+  },
+  {
+    question: "Do you handle e-commerce and complex web applications?",
+    answer: "Yes, our Enterprise package specifically covers e-commerce solutions, custom web applications, and complex integrations. We work with modern technologies and can handle everything from simple stores to advanced business applications."
   }
 ];
 

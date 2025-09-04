@@ -35,8 +35,12 @@ export interface TeamMember {
 export interface PricingPackage {
   name: string;
   price: string;
+  originalPrice?: string;
   features: string[];
   popular: boolean;
+  bestFor?: string;
+  paymentOptions?: string[];
+  deliveryTime?: string;
 }
 
 // Blog-related types

@@ -38,6 +38,10 @@
 }
 
 @layer components {
+  .gradient-background {
+    @apply bg-gradient-to-br from-[#0A0A12] via-[#1a1a2e] to-[#16213e] min-h-screen;
+  }
+
   .glow-text {
     /* Hardware acceleration and performance hints */
     will-change: transform;

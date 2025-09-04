@@ -1,0 +1,452 @@
+{
+  "projectName": "Weekod Next.js Website Redesign",
+  "designTheme": {
+    "primary": "Futuristic Tech with Elegant Professionalism",
+    "colorPalette": {
+      "primary": {
+        "main": "#00F3FF",
+        "light": "#39FFFF",
+        "dark": "#00D1E0"
+      },
+      "secondary": {
+        "main": "#39FF14",
+        "light": "#5FFF4A",
+        "dark": "#2ECC0F"
+      },
+      "accent": {
+        "main": "#FF00FF",
+        "light": "#FF4DFF",
+        "dark": "#CC00CC"
+      },
+      "background": {
+        "main": "#0A0A12",
+        "light": "#0F0F1A",
+        "dark": "#050508",
+        "gradient": "linear-gradient(to bottom right, #0A0A12, #1A1A2E, #16213E)"
+      },
+      "text": {
+        "primary": "#FFFFFF",
+        "secondary": "#E0E0E0",
+        "tertiary": "#A0A0A0"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "primary": "'Inter', sans-serif",
+        "secondary": "'Space Grotesk', sans-serif",
+        "monospace": "'JetBrains Mono', monospace"
+      },
+      "fontWeights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      }
+    },
+    "spacing": {
+      "sectionPadding": "clamp(3rem, 8vw, 8rem)",
+      "containerWidth": "max-w-7xl"
+    },
+    "borderRadius": {
+      "small": "0.375rem",
+      "medium": "0.75rem",
+      "large": "1.5rem",
+      "xl": "2rem",
+      "full": "9999px"
+    },
+    "shadows": {
+      "small": "0 0 15px rgba(0, 243, 255, 0.2)",
+      "medium": "0 0 30px rgba(0, 243, 255, 0.3)",
+      "large": "0 0 50px rgba(0, 243, 255, 0.4)",
+      "glow": "0 0 20px rgba(57, 255, 20, 0.5)"
+    },
+    "animations": {
+      "transitions": {
+        "fast": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "medium": "300ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "slow": "500ms cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      "keyframes": {
+        "fadeIn": "opacity: 0 to 1",
+        "slideUp": "transform: translateY(20px) to translateY(0)",
+        "pulse": "transform: scale(1) to scale(1.05) to scale(1)",
+        "float": "transform: translateY(0px) to translateY(-10px) to translateY(0px)"
+      }
+    }
+  },
+  "globalChanges": {
+    "performance": {
+      "imageOptimization": {
+        "description": "Implement next/image with proper sizing, quality, and loading strategies",
+        "implementation": "Use priority for above-the-fold images, lazy loading for others, and proper sizes attribute"
+      },
+      "componentLazyLoading": {
+        "description": "Extend lazy loading pattern to more heavy components",
+        "implementation": "Apply the ClientOnlyOrb pattern to other complex components like 3D elements and animations"
+      },
+      "fontOptimization": {
+        "description": "Optimize font loading with next/font",
+        "implementation": "Use next/font to load fonts with proper display strategies and subset optimization"
+      },
+      "cssOptimization": {
+        "description": "Reduce unused Tailwind CSS",
+        "implementation": "Configure Tailwind's purge option more aggressively and use @apply for repeated patterns"
+      }
+    },
+    "accessibility": {
+      "semanticHTML": {
+        "description": "Improve semantic structure",
+        "implementation": "Replace generic divs with semantic elements (section, article, nav, etc.)"
+      },
+      "ariaAttributes": {
+        "description": "Add proper ARIA attributes",
+        "implementation": "Ensure all interactive elements have appropriate aria-* attributes"
+      },
+      "keyboardNavigation": {
+        "description": "Enhance keyboard navigation",
+        "implementation": "Add focus styles and ensure all interactive elements are keyboard accessible"
+      },
+      "colorContrast": {
+        "description": "Improve color contrast",
+        "implementation": "Ensure all text meets WCAG AA standards for contrast"
+      }
+    },
+    "responsiveness": {
+      "fluidTypography": {
+        "description": "Implement fluid typography",
+        "implementation": "Use clamp() for font sizes to scale smoothly between breakpoints"
+      },
+      "containerQueries": {
+        "description": "Use container queries for component-level responsiveness",
+        "implementation": "Implement @container queries for components that need to respond to their container size"
+      },
+      "aspectRatioPreservation": {
+        "description": "Preserve aspect ratios for media",
+        "implementation": "Use aspect-ratio CSS property for consistent media sizing"
+      }
+    },
+    "animations": {
+      "scrollTriggeredAnimations": {
+        "description": "Implement scroll-triggered animations",
+        "implementation": "Use Framer Motion's whileInView with proper viewport options and staggered children"
+      },
+      "microinteractions": {
+        "description": "Add subtle microinteractions",
+        "implementation": "Add hover/focus states with subtle animations to interactive elements"
+      },
+      "reducedMotion": {
+        "description": "Respect reduced motion preferences",
+        "implementation": "Use useReducedMotion hook from Framer Motion to disable animations when preferred"
+      }
+    },
+    "navigation": {
+      "structure": {
+        "description": "Enhance navigation structure",
+        "implementation": "Add dropdown menus for Services and Portfolio sections"
+      },
+      "indicators": {
+        "description": "Improve active state indicators",
+        "implementation": "Add animated underlines and subtle background effects for active navigation items"
+      },
+      "mobileNavigation": {
+        "description": "Enhance mobile navigation",
+        "implementation": "Create a more engaging mobile menu with staggered animations and better touch targets"
+      }
+    }
+  },
+  "pageSpecificChanges": {
+    "homePage": {
+      "hero": {
+        "description": "Enhance hero section with 3D elements and interactive animations",
+        "implementation": {
+          "backgroundEffect": "Replace static gradient with animated particles using three.js or react-three-fiber",
+          "heroText": "Implement text reveal animation with staggered characters",
+          "ctaButtons": "Add hover effects with magnetic attraction to cursor",
+          "scrollIndicator": "Create a more engaging scroll indicator with animated path drawing"
+        }
+      },
+      "services": {
+        "description": "Redesign services preview with interactive cards",
+        "implementation": {
+          "cards": "Create 3D tilt effect cards with hover animations",
+          "icons": "Replace static icons with animated SVGs that respond to interaction",
+          "layout": "Implement a masonry or staggered grid layout for visual interest"
+        }
+      },
+      "testimonials": {
+        "description": "Enhance testimonials section with dynamic presentation",
+        "implementation": {
+          "carousel": "Create a 3D carousel with perspective effect",
+          "quotes": "Add subtle floating animation to quote marks",
+          "avatars": "Implement circular progress indicators around avatars"
+        }
+      },
+      "callToAction": {
+        "description": "Create a more compelling CTA section",
+        "implementation": {
+          "background": "Add parallax scrolling effect with depth layers",
+          "button": "Implement a pulsing glow effect on primary CTA button",
+          "text": "Add typing animation effect for headline"
+        }
+      }
+    },
+    "aboutPage": {
+      "team": {
+        "description": "Enhance team member cards with interactive elements",
+        "implementation": {
+          "cards": "Create flip cards that reveal more information on hover/click",
+          "images": "Add subtle zoom and filter effects on hover",
+          "background": "Implement a connecting lines animation between team members"
+        }
+      },
+      "values": {
+        "description": "Create more engaging values section",
+        "implementation": {
+          "icons": "Replace emoji icons with animated SVG illustrations",
+          "cards": "Add progress bar animations that fill when scrolled into view",
+          "layout": "Implement a hexagonal grid layout for values cards"
+        }
+      },
+      "story": {
+        "description": "Add a company timeline section",
+        "implementation": {
+          "timeline": "Create an interactive horizontal timeline with key milestones",
+          "animations": "Add reveal animations for each timeline item",
+          "navigation": "Implement scroll snapping for timeline navigation"
+        }
+      }
+    },
+    "servicesPage": {
+      "serviceCards": {
+        "description": "Enhance service cards with interactive elements",
+        "implementation": {
+          "cards": "Create expandable cards that reveal detailed information",
+          "icons": "Implement animated SVG icons that illustrate each service",
+          "transitions": "Add smooth transitions between service details"
+        }
+      },
+      "processIntegration": {
+        "description": "Integrate process preview within services",
+        "implementation": {
+          "flowchart": "Create an interactive flowchart showing how services connect to process",
+          "animations": "Add step-by-step animations that highlight each process stage",
+          "navigation": "Implement smooth scrolling between services and related process steps"
+        }
+      },
+      "comparison": {
+        "description": "Add a comparison section",
+        "implementation": {
+          "table": "Create an animated comparison table between traditional and AI-powered approaches",
+          "metrics": "Add animated counters for key metrics and savings",
+          "visualization": "Implement a split-screen before/after visualization"
+        }
+      }
+    },
+    "processPage": {
+      "steps": {
+        "description": "Create a more interactive process flow",
+        "implementation": {
+          "timeline": "Implement a vertical timeline with connecting animated lines",
+          "cards": "Create expandable step cards with detailed information",
+          "animations": "Add progress indicators that fill as user scrolls"
+        }
+      },
+      "caseStudy": {
+        "description": "Add a case study section",
+        "implementation": {
+          "showcase": "Create an interactive case study that walks through the process with a real project",
+          "results": "Add animated metrics showing improvements and outcomes",
+          "testimonial": "Include a video testimonial from the client"
+        }
+      },
+      "tools": {
+        "description": "Add a tools and technologies section",
+        "implementation": {
+          "grid": "Create a grid of tools and technologies used in each process step",
+          "logos": "Add subtle hover animations to tool logos",
+          "filtering": "Implement filtering by process step or technology type"
+        }
+      }
+    },
+    "portfolioPage": {
+      "gallery": {
+        "description": "Enhance portfolio gallery with advanced filtering and viewing options",
+        "implementation": {
+          "grid": "Implement a masonry grid layout with smooth animations",
+          "filters": "Add animated filter transitions with tag-based filtering",
+          "preview": "Create a lightbox preview with project details and navigation"
+        }
+      },
+      "projectCards": {
+        "description": "Enhance project cards with interactive elements",
+        "implementation": {
+          "cards": "Create cards with hover effects that reveal project details",
+          "images": "Add parallax effect to project images on scroll",
+          "transitions": "Implement smooth transitions between projects and detail views"
+        }
+      },
+      "categories": {
+        "description": "Add category navigation",
+        "implementation": {
+          "tabs": "Create animated category tabs with indicator",
+          "transitions": "Add smooth transitions between categories",
+          "counters": "Include project counters for each category"
+        }
+      }
+    },
+    "pricingPage": {
+      "pricingCards": {
+        "description": "Enhance pricing cards with interactive elements",
+        "implementation": {
+          "cards": "Create floating cards with subtle hover animations",
+          "features": "Add animated checkmarks that appear sequentially",
+          "popular": "Implement a pulsing highlight effect for popular plan"
+        }
+      },
+      "calculator": {
+        "description": "Add an ROI calculator",
+        "implementation": {
+          "form": "Create an interactive form that calculates potential savings",
+          "visualization": "Add animated charts showing cost comparison",
+          "results": "Implement a dynamic results section with animated counters"
+        }
+      },
+      "comparison": {
+        "description": "Enhance comparison table",
+        "implementation": {
+          "table": "Create a sticky comparison table with animated highlights",
+          "metrics": "Add animated percentage bars for savings",
+          "tooltips": "Implement informational tooltips for each comparison point"
+        }
+      }
+    },
+    "contactPage": {
+      "form": {
+        "description": "Enhance contact form with interactive elements",
+        "implementation": {
+          "inputs": "Create animated input fields with validation feedback",
+          "progress": "Add a multi-step form with progress indicator",
+          "submission": "Implement a satisfying submission animation"
+        }
+      },
+      "map": {
+        "description": "Add an interactive map",
+        "implementation": {
+          "map": "Create a custom styled map with location marker",
+          "animation": "Add subtle animation to map elements",
+          "interaction": "Implement zoom and pan functionality"
+        }
+      },
+      "availability": {
+        "description": "Add availability calendar",
+        "implementation": {
+          "calendar": "Create an interactive calendar showing available consultation slots",
+          "booking": "Implement direct booking functionality",
+          "confirmation": "Add animated confirmation for bookings"
+        }
+      }
+    },
+    "blogPage": {
+      "articles": {
+        "description": "Enhance blog article cards",
+        "implementation": {
+          "cards": "Create cards with hover effects and category indicators",
+          "images": "Add subtle zoom effect on images on hover",
+          "transitions": "Implement smooth transitions between blog list and article view"
+        }
+      },
+      "search": {
+        "description": "Enhance search functionality",
+        "implementation": {
+          "input": "Create an expandable search input with suggestions",
+          "results": "Add animated loading states and result highlighting",
+          "filtering": "Implement advanced filtering with animated transitions"
+        }
+      },
+      "categories": {
+        "description": "Enhance category navigation",
+        "implementation": {
+          "sidebar": "Create a sticky category sidebar with counters",
+          "tags": "Add animated tag cloud with size based on popularity",
+          "filtering": "Implement smooth transitions when filtering by category"
+        }
+      }
+    }
+  },
+  "componentEnhancements": {
+    "navigation": {
+      "description": "Create a more engaging navigation experience",
+      "implementation": {
+        "animation": "Add subtle animations for menu items on hover",
+        "indicators": "Implement animated underlines for active items",
+        "mobile": "Create a full-screen mobile menu with staggered animations"
+      }
+    },
+    "buttons": {
+      "description": "Enhance button components with interactive effects",
+      "implementation": {
+        "primary": "Add gradient background with animated direction change on hover",
+        "secondary": "Implement outline buttons with animated border dash effect",
+        "icon": "Create buttons with animated icon transitions"
+      }
+    },
+    "cards": {
+      "description": "Create a unified card system with various styles",
+      "implementation": {
+        "hover": "Add subtle 3D tilt effect on hover using react-tilt",
+        "borders": "Implement animated gradient borders on focus/hover",
+        "shadows": "Create dynamic shadows that respond to interaction"
+      }
+    },
+    "forms": {
+      "description": "Enhance form components with better feedback",
+      "implementation": {
+        "inputs": "Create floating label inputs with animated focus states",
+        "validation": "Add inline validation with animated indicators",
+        "submission": "Implement loading and success states with animations"
+      }
+    },
+    "orb": {
+      "description": "Enhance the existing Orb component",
+      "implementation": {
+        "performance": "Optimize shader code for better performance",
+        "interaction": "Add more interactive behaviors based on cursor position",
+        "variations": "Create multiple orb variations for different sections"
+      }
+    }
+  },
+  "technicalImplementation": {
+    "stateManagement": {
+      "description": "Improve state management across components",
+      "implementation": {
+        "context": "Create context providers for shared state (theme, navigation, etc.)",
+        "reducers": "Implement useReducer for complex state logic",
+        "persistence": "Add local storage persistence for user preferences"
+      }
+    },
+    "codeOrganization": {
+      "description": "Improve code organization and reusability",
+      "implementation": {
+        "hooks": "Create custom hooks for shared functionality",
+        "utils": "Extract utility functions to dedicated files",
+        "constants": "Move hardcoded values to constants files"
+      }
+    },
+    "testing": {
+      "description": "Add comprehensive testing",
+      "implementation": {
+        "unit": "Add unit tests for utility functions and hooks",
+        "component": "Implement component tests with React Testing Library",
+        "e2e": "Add end-to-end tests with Playwright"
+      }
+    },
+    "documentation": {
+      "description": "Improve code documentation",
+      "implementation": {
+        "comments": "Add JSDoc comments to functions and components",
+        "storybook": "Create Storybook stories for UI components",
+        "readme": "Update README with development guidelines"
+      }
+    }
+  }
+}

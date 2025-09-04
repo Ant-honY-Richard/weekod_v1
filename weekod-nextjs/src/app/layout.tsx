@@ -1,23 +1,42 @@
-import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Grotesk, Manrope } from 'next/font/google'
+import type { Metadata } from 'next'
+import { Inter, Space_Grotesk, Manrope, JetBrains_Mono } from 'next/font/google'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
-// import PerformanceOptimizer from '@/components/ui/PerformanceOptimizer'
+import PerformanceOptimizer from '@/components/ui/PerformanceOptimizer'
+import ExitIntentPopup from '@/components/ui/ExitIntentPopup'
+import ServiceWorkerRegistration from '@/components/ui/ServiceWorkerRegistration'
 import './globals.css'
 
+// Primary font - Inter for body text
 const inter = Inter({ 
   subsets: ['latin'],
-  display: 'swap', // Optimize font loading for LCP
-  preload: true
+  variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+  fallback: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif']
 })
+
+// Secondary font - Space Grotesk for headings
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'],
   variable: '--font-space-grotesk',
-  display: 'swap'
+  display: 'swap',
+  fallback: ['sans-serif']
 })
+
+// Supporting font - Manrope for UI elements
 const manrope = Manrope({ 
   subsets: ['latin'],
   variable: '--font-manrope',
-  display: 'swap'
+  display: 'swap',
+  fallback: ['sans-serif']
+})
+
+// Monospace font - JetBrains Mono for code
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+  fallback: ['Monaco', 'Consolas', 'monospace']
 })
 
 export const metadata: Metadata = {
@@ -32,14 +51,17 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   robots: 'index, follow',
+  themeColor: '#00F3FF',
+  viewport: 'width=device-width, initial-scale=1',
 }
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  themeColor: '#00F3FF',
-  colorScheme: 'dark',
-}
+// Viewport configuration moved to metadata in Next.js 13
+// export const viewport: Viewport = {
+//   width: 'device-width',
+//   initialScale: 1,
+//   themeColor: '#00F3FF',
+//   colorScheme: 'dark',
+// }
 
 export default function RootLayout({
   children,
@@ -56,34 +78,42 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          as="style"
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Weekod",
+              "description": "AI-Enhanced Web Development for Startups",
+              "url": "https://weekod.com",
+              "logo": "https://weekod.com/logo.png",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-XXXXXXXXXX",
+                "contactType": "customer service"
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
         />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        />
-        <noscript>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          />
-        </noscript>
         
         {/* Critical inline CSS for instant LCP */}
         <style dangerouslySetInnerHTML={{
           __html: `
             /* Critical above-the-fold styles */
             body {
-              background: #0A0A12;
+              background: linear-gradient(to bottom right, #0A0A12, #1A1A2E, #16213E);
               color: #ffffff;
-              font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+              font-family: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
               margin: 0;
               padding: 0;
               overflow-x: hidden;
+              font-feature-settings: "kern" 1, "liga" 1;
             }
             .hero-text-instant {
               opacity: 1 !important;
@@ -134,15 +164,19 @@ export default function RootLayout({
           `
         }} />
       </head>
-      <body className={`${inter.className} ${spaceGrotesk.variable} ${manrope.variable}`}>
-        {/* Performance Optimizer (temporarily disabled for debugging) */}
-        {/* <PerformanceOptimizer /> */}
+      <body className={`${inter.className} ${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable}`}>
+        {/* Performance Optimizer */}
+        <PerformanceOptimizer />
+        
+        {/* Service Worker Registration */}
+        <ServiceWorkerRegistration />
         
         {/* Google Analytics */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         )}
         {children}
+        <ExitIntentPopup />
       </body>
     </html>
   )

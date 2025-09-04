@@ -2,20 +2,17 @@
 
 import { useEffect } from 'react';
 
-const ServiceWorkerRegistration = () => {
+const ServiceWorkerRegistration: React.FC = () => {
   useEffect(() => {
-    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-      navigator.serviceWorker
-        .register('/sw.js')
-        .then((registration) => {
-          console.log('SW registered: ', registration);
-        })
-        .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
-        });
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service worker registered'))
+          .catch(err => console.error('Service worker registration failed:', err));
+      });
     }
   }, []);
-
+  
   return null;
 };
 

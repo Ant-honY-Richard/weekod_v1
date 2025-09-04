@@ -9,10 +9,6 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line no-console
-    console.error('Route Error:', error);
-  }
 
   return (
     <div className="min-h-[60vh] bg-[#0A0A12] text-white flex items-center justify-center px-4">

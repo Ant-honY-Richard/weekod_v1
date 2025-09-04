@@ -112,6 +112,170 @@ export const portfolio = [
   },
 ];
 
+export const pricingPackages = [
+  {
+    name: 'Basic',
+    price: '₹24,999',
+    originalPrice: '₹45,000',
+    popular: false,
+    bestFor: 'Small businesses & startups',
+    deliveryTime: '2-3 weeks',
+    paymentOptions: ['50% advance, 50% on delivery', 'EMI options available', 'No hidden charges'],
+    features: [
+      'Custom responsive website design',
+      'Up to 5 pages',
+      'AI-powered content optimization',
+      'Basic SEO setup',
+      'Mobile optimization',
+      '1 month post-launch support',
+      'Contact form integration',
+      'Social media integration',
+      'Free SSL certificate',
+      'Basic analytics setup'
+    ]
+  },
+  {
+    name: 'Growth',
+    price: '₹54,999',
+    originalPrice: '₹75,000',
+    popular: true,
+    bestFor: 'Growing businesses & e-commerce',
+    deliveryTime: '3-4 weeks',
+    paymentOptions: ['40% advance, 60% on milestones', 'EMI options available', 'GST invoice provided'],
+    features: [
+      'Everything in Basic',
+      'Up to 15 pages',
+      'Advanced AI features',
+      'E-commerce functionality',
+      'Advanced SEO optimization',
+      '3 months post-launch support',
+      'Analytics integration',
+      'Performance optimization',
+      'Custom animations',
+      'Blog/CMS integration',
+      'Payment gateway integration',
+      'Inventory management'
+    ]
+  },
+  {
+    name: 'Enterprise',
+    price: '₹99,999+',
+    originalPrice: 'Contact for Quote',
+    popular: false,
+    bestFor: 'Large enterprises & complex projects',
+    deliveryTime: '4-8 weeks',
+    paymentOptions: ['Milestone-based payments', 'Custom payment terms', 'Enterprise billing'],
+    features: [
+      'Everything in Growth',
+      'Unlimited pages',
+      'Custom AI integrations',
+      'Advanced web applications',
+      'API integrations',
+      'Ongoing strategic support',
+      'Custom functionality',
+      'Enterprise-level security',
+      'Dedicated project manager',
+      'Priority support',
+      'Multi-language support',
+      'Advanced admin dashboard'
+    ]
+  }
+];
+
+export const processSteps = [
+  {
+    step: 1,
+    title: 'Discovery & Strategy',
+    description: 'We start by understanding your business, goals, and target audience through comprehensive research and analysis.',
+    details: [
+      'Business analysis and goal setting',
+      'Target audience research',
+      'Competitor analysis',
+      'Technical requirements gathering',
+      'Project timeline and milestone planning'
+    ],
+    icon: 'discovery',
+    duration: '1-2 weeks',
+    image: 'https://res.cloudinary.com/djxoeyk1a/image/upload/v1756257137/ce0dac5a-b469-4314-b827-422000733169_eqzrku.jpg'
+  },
+  {
+    step: 2,
+    title: 'AI-Powered Design',
+    description: 'Our AI tools accelerate the design process while our experts ensure every detail aligns with your brand.',
+    details: [
+      'AI-generated wireframes and mockups',
+      'Brand identity integration',
+      'User experience optimization',
+      'Responsive design planning',
+      'Interactive prototype creation'
+    ],
+    icon: 'design',
+    duration: '1-3 weeks',
+    image: 'https://res.cloudinary.com/djxoeyk1a/image/upload/v1756259422/040c7c07-d9cc-4479-8225-aa954a026d54_p1e6zr.jpg'
+  },
+  {
+    step: 3,
+    title: 'Smart Development',
+    description: 'We build your solution using cutting-edge technologies and AI-assisted development for faster, cleaner code.',
+    details: [
+      'Modern framework implementation',
+      'AI-assisted code generation',
+      'Performance optimization',
+      'Security implementation',
+      'Quality assurance testing'
+    ],
+    icon: 'development',
+    duration: '2-4 weeks',
+    image: 'https://res.cloudinary.com/djxoeyk1a/image/upload/v1756259404/1b05a042-63b3-4e16-b4e1-c2dc32c0e3ae_rpwkho.jpg'
+  },
+  {
+    step: 4,
+    title: 'Launch & Optimize',
+    description: 'We deploy your solution and continuously optimize based on real-world data and user feedback.',
+    details: [
+      'Production deployment',
+      'Performance monitoring setup',
+      'Analytics integration',
+      'User feedback collection',
+      'Ongoing optimization'
+    ],
+    icon: 'launch',
+    duration: '1 week',
+    image: 'https://res.cloudinary.com/djxoeyk1a/image/upload/v1756259456/c27c0741-d519-43f7-ae28-1e6ca6cf4366_fkuwmj.jpg'
+  }
+];
+
+export const teamMembers = [
+  {
+    name: 'Anthony Richard',
+    role: 'Lead Web Developer',
+    bio: '3+ years experience building responsive websites with a focus on performance and accessibility. Expertise in Next.js and TypeScript.',
+    image: 'https://placehold.co/300x300/00F3FF/0A0A12?text=AR',
+    skills: ['Next.js', 'TypeScript', 'React', 'Performance Optimization']
+  },
+  {
+    name: 'Sabirabanu Sudarji.',
+    role: 'UX/UI Designer',
+    bio: 'Artistically driven UI/UX designer specializing in creating intuitive user experiences. Passionate about design systems and component libraries.',
+    image: 'https://placehold.co/300x300/FF00FF/0A0A12?text=SS',
+    skills: ['UI/UX Design', 'Figma', 'Design Systems', 'Component Libraries']
+  },
+  {
+    name: 'Dhanush J.',
+    role: 'AI Developer',
+    bio: 'AI specialist with expertise in machine learning integration and intelligent automation. Focused on AI-driven solutions and smart integrations.',
+    image: 'https://placehold.co/300x300/39FF14/0A0A12?text=DJ',
+    skills: ['AI/ML', 'Python', 'Machine Learning', 'Automation']
+  },
+  {
+    name: 'Surya S.',
+    role: 'App Developer',
+    bio: 'Mobile app developer specializing in cross-platform development with React Native and Flutter. Expert in creating seamless user experiences.',
+    image: 'https://placehold.co/300x300/FFD700/0A0A12?text=SS',
+    skills: ['React Native', 'Flutter', 'Mobile Development', 'Cross-platform']
+  }
+];
+
 export const pageVariants = {
   initial: { opacity: 0, y: 20 },
   in: { opacity: 1, y: 0 },

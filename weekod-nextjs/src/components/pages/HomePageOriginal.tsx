@@ -6,6 +6,9 @@ import { PageType } from '@/types';
 import ServiceIcon from '@/components/ui/ServiceIcons';
 import { services } from '@/data';
 import ClientOnlyOrb from '@/components/ui/ClientOnlyOrb';
+import { EnhancedHeroSection } from '@/components/ui/EnhancedHeroSection';
+import { EnhancedServicesSection } from '@/components/ui/EnhancedServicesSection';
+import { EnhancedTestimonialsSection } from '@/components/ui/EnhancedTestimonialsSection';
 
 interface HomePageProps {
   setCurrentPage?: (page: PageType) => void;
@@ -13,9 +16,9 @@ interface HomePageProps {
 
 const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
   return (
-    <div className="bg-[#0A0A12]" suppressHydrationWarning>
-      {/* Hero Section */}
-      <section id="hero" className="min-h-screen relative flex items-center overflow-hidden hero-critical">
+    <div className="gradient-background" suppressHydrationWarning>
+      {/* Enhanced Hero Section */}
+      <EnhancedHeroSection setCurrentPage={setCurrentPage} />
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
           {/* Primary gradient */}
@@ -29,7 +32,7 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
                 rotateOnHover={true}
                 hue={180}
                 forceHoverState={false}
-                delay={300}
+                delay={1500}
               />
             </div>
             {/* Mobile orb - smaller and more subtle */}
@@ -39,7 +42,7 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
                 rotateOnHover={false}
                 hue={180}
                 forceHoverState={false}
-                delay={300}
+                delay={1500}
               />
             </div>
           </div>
@@ -65,7 +68,7 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
                   duration: 2.5 + (i * 0.3),
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: 0.3 + (i * 0.1), // Reduced delay for faster loading
+                  delay: 1 + (i * 0.2), // Delay particles to not block LCP
                 }}
               />
             ))}
@@ -78,17 +81,12 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
           <div className="flex flex-col items-center justify-center min-h-screen py-20">
             
             {/* Badge - optimized for LCP */}
-            <motion.div 
-              className="mb-6 md:mb-4"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
+            <div className="mb-6 md:mb-4 animate-fade-in-fast">
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/30 text-[#39FF14] font-bold text-xs sm:text-sm tracking-wider backdrop-blur-sm">
                 <span className="w-2 h-2 bg-[#39FF14] rounded-full mr-2 animate-pulse"></span>
                 AI + HUMAN CRAFT
               </span>
-            </motion.div>
+            </div>
 
             {/* Main Heading - Ultra-critical LCP optimization */}
             <div className="text-center mb-6 md:mb-8 hero-text-instant">
@@ -109,12 +107,7 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
             </div>
 
             {/* CTA Buttons - Desire + Action */}
-            <motion.div 
-              className="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md sm:max-w-none px-4"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
-            >
+            <div className="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md sm:max-w-none px-4 animate-fade-in-fast" style={{ animationDelay: '0.3s' }}>
               {/* Primary CTA - Clear value proposition */}
               <motion.button 
                 onClick={() => setCurrentPage?.('contact')}
@@ -146,13 +139,13 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
                   <span className="sm:hidden">Our Work</span>
                 </span>
               </motion.button>
-            </motion.div>
+            </div>
 
             {/* Social Proof Section - Trust building */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
               className="mt-12 flex flex-col items-center"
             >
               <p className="text-gray-400 text-sm mb-4">Trusted by startups and businesses</p>
@@ -193,7 +186,7 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
           className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 1, duration: 0.5 }}
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}
@@ -211,9 +204,10 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
         {/* Full section background image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://res.cloudinary.com/djxoeyk1a/image/upload/v1756866654/ChatGPT_Image_Sep_3_2025_07_56_37_AM_1_c6vvkt.jpg"
+            src="https://res.cloudinary.com/djxoeyk1a/image/upload/v1756818082/bb4458ac-3f68-4f75-9056-f9c6c5c9b508_hixkeh.jpg"
             alt="Weekod Team - A Young Team With Big Dreams" 
             className="w-full h-full object-cover"
+            style={{ objectPosition: "center 30%" }}
           />
           {/* Gradient overlays for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A12]/80 via-[#0A0A12]/60 to-[#0A0A12]/80"></div>
