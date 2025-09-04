@@ -95,7 +95,7 @@ const ExitIntentPopup: React.FC = () => {
             </button>
             
             <h3 className="text-2xl font-bold text-white mb-4">Before You Go!</h3>
-            <p className="text-gray-300 mb-6">Get our free guide: "10 Essential Features Every Startup Website Needs"</p>
+            <p className="text-gray-300 mb-6">Get our free guide: &ldquo;10 Essential Features Every Startup Website Needs&rdquo;</p>
             
             {!isSuccess ? (
               <form className="space-y-4" onSubmit={handleSubmit}>
@@ -126,7 +126,7 @@ const ExitIntentPopup: React.FC = () => {
               className="mt-4 text-sm text-gray-400 hover:text-white w-full text-center"
               onClick={() => setIsVisible(false)}
             >
-              No thanks, I'll pass
+              No thanks, I&apos;ll pass
             </button>
           </motion.div>
         </motion.div>

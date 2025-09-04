@@ -99,7 +99,7 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ data }) => {
           
           {testimonial && (
             <div className="mb-16 bg-[#0F0F1A] p-8 rounded-xl border border-[#00F3FF]/20">
-              <blockquote className="text-xl italic text-gray-300 mb-6">"{testimonial.quote}"</blockquote>
+              <blockquote className="text-xl italic text-gray-300 mb-6">&ldquo;{testimonial.quote}&rdquo;</blockquote>
               <div className="flex items-center">
                 {testimonial.avatar && (
                   <div className="mr-4 relative w-12 h-12 rounded-full overflow-hidden">

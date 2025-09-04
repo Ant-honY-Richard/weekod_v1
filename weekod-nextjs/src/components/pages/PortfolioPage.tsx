@@ -42,7 +42,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
             Showcasing our latest projects and client success stories
           </p>
           <p className="text-gray-400 max-w-3xl mx-auto mb-12">
-            From startups to established businesses, we've helped clients across various industries transform their digital presence with our AI-powered solutions.
+            From startups to established businesses, we&apos;ve helped clients across various industries transform their digital presence with our AI-powered solutions.
           </p>
           
           {/* Search Bar (with icon) */}

@@ -1,4 +1,4 @@
-import { Service, ProcessStep, Testimonial, PortfolioItem, TeamMember, PricingPackage, PricingCategory, ComparisonTable } from '@/types';
+import { Service, ProcessStep, Testimonial, PortfolioItem, TeamMember, PricingPackage } from '@/types';
 
 export const services: Service[] = [
   {

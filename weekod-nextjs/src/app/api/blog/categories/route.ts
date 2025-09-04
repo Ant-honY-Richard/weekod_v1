@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getBlogCategoriesCollection, getBlogPostsCollection } from '@/lib/mongodb-blog';
-import { BlogCategory } from '@/types';
+
+// Define the type inline to avoid import issues
+interface BlogCategory {
+  _id?: string;
+  name: string;
+  slug: string;
+  description?: string;
+  color?: string;
+  postCount?: number;
+}
 
 export async function GET(request: NextRequest) {
   try {

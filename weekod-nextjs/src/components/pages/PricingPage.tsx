@@ -177,7 +177,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ setCurrentPage }) => {
                   <div className="text-center">
                     <p className="text-xs text-gray-400 mb-2">Payment Options:</p>
                     <div className="flex flex-wrap gap-1 justify-center">
-                      {pkg.paymentOptions.map((option, optionIndex) => (
+                      {pkg.paymentOptions?.map((option, optionIndex) => (
                         <span key={optionIndex} className="text-xs bg-[#00F3FF]/10 text-[#00F3FF] px-2 py-1 rounded">
                           {option}
                         </span>

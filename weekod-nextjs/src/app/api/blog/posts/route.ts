@@ -1,6 +1,59 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getBlogPostsCollection } from '@/lib/mongodb-blog';
-import { BlogPost, BlogSearchFilters, BlogPagination } from '@/types';
+
+// Define types inline to avoid import issues
+interface BlogPost {
+  _id?: string;
+  slug: string;
+  title: string;
+  subtitle?: string;
+  excerpt: string;
+  content: string;
+  author: {
+    name: string;
+    image?: string;
+    bio?: string;
+  };
+  publishedAt: Date;
+  updatedAt?: Date;
+  tags: string[];
+  categories: string[];
+  featuredImage?: {
+    url: string;
+    alt: string;
+    caption?: string;
+  };
+  readTime: number;
+  featured: boolean;
+  published: boolean;
+  seo: {
+    metaTitle?: string;
+    metaDescription?: string;
+    keywords?: string[];
+  };
+  views?: number;
+  likes?: number;
+}
+
+interface BlogSearchFilters {
+  query?: string;
+  categories?: string[];
+  tags?: string[];
+  author?: string;
+  dateRange?: {
+    from?: Date;
+    to?: Date;
+  };
+}
+
+interface BlogPagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+}
 
 export async function GET(request: NextRequest) {
   try {

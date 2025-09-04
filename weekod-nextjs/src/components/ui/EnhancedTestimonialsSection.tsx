@@ -171,7 +171,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index, a
 
           {/* Content */}
           <blockquote className="text-lg md:text-xl text-center text-text-primary mb-8 leading-relaxed font-light">
-            "{testimonial.content}"
+            &ldquo;{testimonial.content}&rdquo;
           </blockquote>
 
           {/* Rating */}
@@ -328,7 +328,7 @@ export const EnhancedTestimonialsSection: React.FC = () => {
           </h2>
 
           <p className="text-fluid-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Don't just take our word for it. Here's what our clients have to say about their experience with Weekod.
+            Don&apos;t just take our word for it. Here&apos;s what our clients have to say about their experience with Weekod.
           </p>
         </motion.div>
 
@@ -339,12 +339,12 @@ export const EnhancedTestimonialsSection: React.FC = () => {
             style={shouldReduceMotion ? {} : {
               perspective: '1000px',
               transformStyle: 'preserve-3d',
+              x: dragX,
             }}
             drag={shouldReduceMotion ? false : 'x'}
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.2}
             onDragEnd={handleDragEnd}
-            style={shouldReduceMotion ? {} : { x: dragX }}
           >
             <AnimatePresence mode="sync">
               {testimonials.map((testimonial, index) => (

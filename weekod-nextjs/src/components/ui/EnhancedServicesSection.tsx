@@ -94,13 +94,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, isHovered, on
           >
             <div className="relative">
               <motion.div
-                className={`w-16 h-16 rounded-xl flex items-center justify-center ${service.bgColor} group-hover:shadow-lg transition-all duration-300`}
+                className={`w-16 h-16 rounded-xl flex items-center justify-center bg-primary-main/20 group-hover:shadow-lg transition-all duration-300`}
                 whileHover={{ scale: shouldReduceMotion ? 1 : 1.1 }}
                 style={shouldReduceMotion ? {} : { transform: 'translateZ(20px)' }}
               >
                 <ServiceIcon 
                   type={service.icon as any} 
-                  className={`w-8 h-8 ${service.textColor}`} 
+                  className="w-8 h-8 text-primary-main" 
                 />
               </motion.div>
               
@@ -155,35 +155,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, isHovered, on
             {service.description}
           </motion.p>
 
-          {/* Features List */}
-          <motion.ul
-            className="space-y-2 mb-6"
+          {/* Details */}
+          <motion.p
+            className="text-sm text-text-tertiary mb-6 text-center italic"
             style={shouldReduceMotion ? {} : { transform: 'translateZ(5px)' }}
           >
-            {service.features?.slice(0, 3).map((feature, featureIndex) => (
-              <motion.li
-                key={featureIndex}
-                className="flex items-center text-sm text-text-tertiary"
-                initial={{ opacity: 0, x: -20 }}
-                animate={isHovered ? { opacity: 1, x: 0 } : { opacity: 0.7, x: 0 }}
-                transition={{ delay: featureIndex * 0.1 }}
-              >
-                <motion.div
-                  className="w-2 h-2 bg-secondary-main rounded-full mr-3 flex-shrink-0"
-                  animate={isHovered && !shouldReduceMotion ? {
-                    scale: [1, 1.2, 1],
-                    boxShadow: [
-                      '0 0 5px rgba(57, 255, 20, 0.3)',
-                      '0 0 15px rgba(57, 255, 20, 0.8)',
-                      '0 0 5px rgba(57, 255, 20, 0.3)',
-                    ],
-                  } : {}}
-                  transition={{ duration: 1.5, repeat: Infinity, delay: featureIndex * 0.2 }}
-                />
-                {feature}
-              </motion.li>
-            ))}
-          </motion.ul>
+            {service.details}
+          </motion.p>
 
           {/* CTA Button */}
           <motion.button
