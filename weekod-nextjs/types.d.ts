@@ -37,11 +37,14 @@ declare module '@/types' {
     name: string;
     price: string;
     originalPrice?: string;
+    internationalPrice?: string;
+    internationalOriginalPrice?: string;
     features: string[];
     popular: boolean;
     bestFor?: string;
     paymentOptions?: string[];
     deliveryTime?: string;
+    cta?: string;
   }
 
   export interface BlogPost {

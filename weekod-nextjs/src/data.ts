@@ -1,3 +1,5 @@
+import { PricingPackage } from './types';
+
 export const services = [
   {
     title: 'Website Design',
@@ -112,7 +114,7 @@ export const portfolio = [
   },
 ];
 
-export const pricingPackages = [
+export const pricingPackages: PricingPackage[] = [
   {
     name: 'Starter',
     price: '₹25K–₹50K',
