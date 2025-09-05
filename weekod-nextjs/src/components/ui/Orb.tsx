@@ -327,7 +327,7 @@ export default function Orb({
         cleanup();
       }
     };
-  }, [isClient, hue, hoverIntensity, rotateOnHover, forceHoverState]);
+  }, [isClient, hue, hoverIntensity, rotateOnHover, forceHoverState, vert, frag]);
 
   // Fallback CSS orb for SSR, client-side errors, or OGL import failures
   const fallbackOrb = (

@@ -137,7 +137,7 @@ export default function PortfolioDetailClientPage() {
             Project Details Coming Soon
           </h1>
           <p className="text-gray-400 mb-6 leading-relaxed">
-            We're currently preparing detailed case studies and project showcases. 
+            We&apos;re currently preparing detailed case studies and project showcases. 
             Check back soon to see the full details of our work.
           </p>
           <button
