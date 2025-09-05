@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { processSteps } from '@/data';
 import { PageType } from '@/types';
 
@@ -152,9 +153,11 @@ const ProcessPage: React.FC<ProcessPageProps> = ({ setCurrentPage }) => {
                 className="relative order-1 lg:order-2"
               >
                 <div className="aspect-video rounded-lg sm:rounded-xl overflow-hidden border border-[#00F3FF]/30">
-                  <img 
+                  <Image 
                     src={processSteps[activeStep].image}
                     alt={processSteps[activeStep].title}
+                    width={640}
+                    height={360}
                     className="w-full h-full object-cover"
                   />
                 </div>

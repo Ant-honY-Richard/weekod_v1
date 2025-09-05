@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -141,9 +142,11 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
             <div className="flex flex-wrap items-center gap-6 text-gray-400 text-sm">
               <div className="flex items-center space-x-3">
                 {post.author.image && (
-                  <img
+                  <Image
                     src={post.author.image}
                     alt={post.author.name}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full"
                   />
                 )}
@@ -190,9 +193,11 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
               className="mb-12"
             >
               <div className="relative rounded-2xl overflow-hidden">
-                <img
+                <Image
                   src={post.featuredImage.url}
                   alt={post.featuredImage.alt}
+                  width={800}
+                  height={384}
                   className="w-full h-64 md:h-96 object-cover"
                 />
                 {post.featuredImage.caption && (

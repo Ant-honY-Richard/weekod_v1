@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { portfolio as portfolioData } from '@/data';
 import { PageType } from '@/types';
@@ -42,7 +43,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
             Showcasing our latest projects and client success stories
           </p>
           <p className="text-gray-400 max-w-3xl mx-auto mb-12">
-            From startups to established businesses, we've helped clients across various industries transform their digital presence with our AI-powered solutions.
+            From startups to established businesses, we&apos;ve helped clients across various industries transform their digital presence with our AI-powered solutions.
           </p>
           
           {/* Search Bar (with icon) */}
@@ -77,9 +78,11 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
                 transition={{ delay: index * 0.06 }}
                 className="bg-[#0F0F1A] rounded-2xl overflow-hidden border border-[#00F3FF]/20 hover:border-[#00F3FF]/40 transition-all"
               >
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect } from 'react';
+import Image from 'next/image';
 
 interface OptimizedImageProps {
   src: string;
@@ -20,7 +21,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [inView, setInView] = useState(priority);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
 
   const handleLoad = useCallback(() => {
     setImageLoaded(true);
@@ -57,16 +58,17 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         <div className="absolute inset-0 bg-[#0F0F1A] animate-pulse rounded"></div>
       )}
       {inView && (
-        <img
+        <Image
           src={imageError ? fallback : src}
           alt={alt}
+          width={400}
+          height={400}
           className={`${className} transition-opacity duration-300 ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={handleLoad}
           onError={handleError}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding="async"
+          priority={priority}
         />
       )}
     </div>

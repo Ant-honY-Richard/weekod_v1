@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface BlogAuthorBioProps {
   author: {
@@ -23,9 +24,11 @@ export default function BlogAuthorBio({ author }: BlogAuthorBioProps) {
       <div className="flex items-start space-x-4">
         <div className="flex-shrink-0">
           {author.image ? (
-            <img
+            <Image
               src={author.image}
               alt={author.name}
+              width={64}
+              height={64}
               className="w-16 h-16 rounded-full object-cover"
             />
           ) : (
