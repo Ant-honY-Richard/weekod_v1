@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { portfolio } from '@/data';
 
@@ -164,7 +165,7 @@ export default function PortfolioDetailClientPage() {
           <p className="text-gray-300 max-w-3xl">{item.description}</p>
           <p className="text-sm text-gray-400 mt-3">Industry: {item.industry}</p>
           <div className="mt-8 rounded-2xl overflow-hidden border border-[#00F3FF]/20">
-            <img src={item.image} alt={item.title} className="w-full h-[320px] md:h-[420px] object-cover" />
+            <Image src={item.image} alt={item.title} width={800} height={420} className="w-full h-[320px] md:h-[420px] object-cover" />
           </div>
           <div className="mt-6 flex gap-3">
             <a
@@ -206,7 +207,7 @@ export default function PortfolioDetailClientPage() {
           <div className="grid md:grid-cols-3 gap-4">
             {gallery.map((src, idx) => (
               <div key={idx} className="rounded-xl overflow-hidden border border-[#00F3FF]/15">
-                <img src={src} alt={`${item.title} preview ${idx + 1}`} className="w-full h-56 object-cover" />
+                <Image src={src} alt={`${item.title} preview ${idx + 1}`} width={400} height={224} className="w-full h-56 object-cover" />
               </div>
             ))}
           </div>
