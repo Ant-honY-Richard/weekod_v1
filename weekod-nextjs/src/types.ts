@@ -79,6 +79,17 @@ export interface PricingPackage {
   bestFor?: string;
   deliveryTime?: string;
   paymentOptions?: string[];
+  cta?: string;
+  disclaimer?: string;
+  internationalPrice?: string;
+  internationalOriginalPrice?: string;
+}
+
+export interface AddOn {
+  name: string;
+  price: string;
+  internationalPrice: string;
+  features: string[];
 }
 
 export interface NavigationProps {

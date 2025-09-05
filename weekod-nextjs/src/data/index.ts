@@ -140,6 +140,8 @@ export const pricingPackages: PricingPackage[] = [
     name: "Basic",
     price: "₹24,999",
     originalPrice: "₹39,999",
+    internationalPrice: "$499",
+    internationalOriginalPrice: "$799",
     features: [
       "Professional website (up to 5 pages)",
       "Mobile-first responsive design",
@@ -154,12 +156,15 @@ export const pricingPackages: PricingPackage[] = [
     popular: false,
     bestFor: "Small businesses & startups",
     paymentOptions: ["Full payment", "50% advance, 50% on completion"],
-    deliveryTime: "7-14 days"
+    deliveryTime: "7-14 days",
+    cta: "Get Started"
   },
   {
     name: "Growth",
     price: "₹54,999",
     originalPrice: "₹74,999",
+    internationalPrice: "$1,499",
+    internationalOriginalPrice: "$2,499",
     features: [
       "Custom website (up to 12 pages; blog/news ready)",
       "AI-enhanced prototyping & smart content",
@@ -174,12 +179,15 @@ export const pricingPackages: PricingPackage[] = [
     popular: true,
     bestFor: "Growing businesses & established brands",
     paymentOptions: ["Full payment (5% discount)", "3 monthly installments", "50% advance, 50% on completion"],
-    deliveryTime: "14-21 days"
+    deliveryTime: "14-21 days",
+    cta: "Start Growing"
   },
   {
     name: "Enterprise",
     price: "₹99,999",
     originalPrice: "₹1,49,999",
+    internationalPrice: "$2,999",
+    internationalOriginalPrice: "$4,999",
     features: [
       "Tailored solutions for complex/e-commerce/app needs",
       "Bespoke UI/UX design with strategy consulting",
@@ -194,7 +202,8 @@ export const pricingPackages: PricingPackage[] = [
     popular: false,
     bestFor: "Enterprises & e-commerce businesses",
     paymentOptions: ["Full payment (10% discount)", "Custom payment schedule", "Milestone-based payments"],
-    deliveryTime: "30-45 days"
+    deliveryTime: "30-45 days",
+    cta: "Go Enterprise"
   }
 ];
 

@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect, memo } from 'react';
 import { LazyMotion, domAnimation, m, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { services } from '@/data';
 import { PageType } from '@/types';
 import ServiceIcon from '@/components/ui/ServiceIcons';
@@ -64,6 +65,8 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setCurrentPage }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [visualsReady, setVisualsReady] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const prefersReducedMotion = useReducedMotion();
 
@@ -79,6 +82,48 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setCurrentPage }) => {
     };
     schedule(() => setVisualsReady(true));
   }, []);
+
+  // Auto-switch services every 7 seconds with progress tracking
+  useEffect(() => {
+    if (isPaused) {
+      setProgress(0);
+      return;
+    }
+
+    let progressInterval: NodeJS.Timeout;
+    let switchInterval: NodeJS.Timeout;
+
+    // Reset progress and start tracking
+    setProgress(0);
+    
+    // Update progress every 100ms (smooth animation)
+    progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        const newProgress = prev + (100 / 7000) * 100;
+        return newProgress >= 100 ? 100 : newProgress;
+      });
+    }, 100);
+
+    // Switch service after 7 seconds
+    switchInterval = setTimeout(() => {
+      setActiveStep((prev) => (prev + 1) % services.length);
+      setProgress(0);
+    }, 7000);
+
+    return () => {
+      clearInterval(progressInterval);
+      clearTimeout(switchInterval);
+    };
+  }, [activeStep, isPaused]);
+
+  // Handle manual service selection
+  const handleServiceClick = (index: number) => {
+    setActiveStep(index);
+    setProgress(0);
+    setIsPaused(true);
+    // Resume auto-switching after 10 seconds of no interaction
+    setTimeout(() => setIsPaused(false), 10000);
+  };
 
   const active = services[activeStep];
   const accent = accentFor(active.icon);
@@ -133,7 +178,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setCurrentPage }) => {
                     animate={prefersReducedMotion ? undefined : 'in'}
                     whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.005 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => setActiveStep(index)}
+                    onClick={() => handleServiceClick(index)}
                     className={`group relative p-5 md:p-6 rounded-2xl border transition-all text-left overflow-hidden ${
                       isActive
                         ? 'border-[#00F3FF]/50 bg-[#0F0F1A]'
@@ -154,7 +199,16 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setCurrentPage }) => {
                         <p className={`text-sm leading-relaxed ${isActive ? 'text-gray-200' : 'text-gray-400'}`}>{service.description}</p>
                       </div>
                     </div>
-                  {/* Removed active indicator line */}
+
+                    {/* Progress indicator for auto-switching */}
+                    {isActive && !isPaused && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00F3FF]/20 rounded-b-2xl overflow-hidden">
+                        <div 
+                          className="h-full bg-[#00F3FF] transition-all duration-100 ease-linear"
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+                    )}
                   </m.button>
                 );
               })}
@@ -170,9 +224,9 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setCurrentPage }) => {
                 transition={{ duration: 0.25 }}
                 className="bg-[#0A0A12] rounded-2xl shadow-xl p-7 md:p-10 border border-[#00F3FF]/20"
               >
-                <div className="grid lg:grid-cols-2 gap-10 items-center">
+                <div className="grid lg:grid-cols-2 gap-6 md:gap-10 items-center">
                   {/* Text side */}
-                  <div>
+                  <div className="order-2 lg:order-1">
                     <m.h2 
                       initial={prefersReducedMotion ? undefined : { opacity: 0 }}
                       animate={prefersReducedMotion ? undefined : { opacity: 1 }}
@@ -244,19 +298,48 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ setCurrentPage }) => {
                     </div>
                   </div>
 
-                  {/* Visual side (deferred until idle) */}
-                  <div className="hidden lg:flex items-center justify-center">
+                  {/* Visual side - responsive on all screen sizes */}
+                  <div className="order-1 lg:order-2 flex items-center justify-center">
                     {visualsReady && (
-                      <div className="relative w-full max-w-[480px] aspect-[4/3]">
+                      <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[480px] aspect-[4/3]">
                         {/* Static gradient card */}
-                        <div className={`absolute inset-0 rounded-2xl border border-[#00F3FF]/25 bg-gradient-to-br ${accent.bg}`} />
+                        <div className="absolute inset-0 rounded-2xl border border-[#00F3FF]/25 bg-gradient-to-br from-[#00F3FF]/10 to-transparent" />
 
-                        {/* Central icon with subtle glow */}
+                        {/* Central content with Lottie animations for all services */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-28 h-28 rounded-2xl bg-[#0F0F1A] border border-[#00F3FF]/30 flex items-center justify-center"
-                          >
-                            <ServiceIcon type={active.icon} className="w-16 h-16" color={accent.hex} />
-                          </div>
+                          {(() => {
+                            const getLottieUrl = (iconType: string) => {
+                              switch (iconType) {
+                                case 'website-design':
+                                  return 'https://lottie.host/2ff222a9-8770-43dc-90cc-a028937cd3e9/lMpb7kPjGr.lottie';
+                                case 'ai-solutions':
+                                  return 'https://lottie.host/c98bb54c-0388-4210-b201-9fad039f9d2d/hFG0T9Ga9G.lottie';
+                                case 'app-development':
+                                  return 'https://lottie.host/37493a34-8329-4ceb-bd52-009f4e2711e9/M1bNOuMJcG.lottie';
+                                case 'maintenance-support':
+                                  return 'https://lottie.host/c0def2b8-ee00-4c7a-bd26-7fbf31260196/FRMoDYLSAH.lottie';
+                                default:
+                                  return null;
+                              }
+                            };
+
+                            const lottieUrl = getLottieUrl(active.icon);
+                            
+                            return lottieUrl ? (
+                              <div className="w-full h-full flex items-center justify-center">
+                                <DotLottieReact
+                                  src={lottieUrl}
+                                  loop
+                                  autoplay
+                                  className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 max-w-[90%] max-h-[90%]"
+                                />
+                              </div>
+                            ) : (
+                              <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-2xl bg-[#0F0F1A] border border-[#00F3FF]/30 flex items-center justify-center">
+                                <ServiceIcon type={active.icon} className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16" color="#00F3FF" />
+                              </div>
+                            );
+                          })()}
                         </div>
                       </div>
                     )}

@@ -36,11 +36,14 @@ export interface PricingPackage {
   name: string;
   price: string;
   originalPrice?: string;
+  internationalPrice?: string;
+  internationalOriginalPrice?: string;
   features: string[];
   popular: boolean;
   bestFor?: string;
   paymentOptions?: string[];
   deliveryTime?: string;
+  cta?: string;
 }
 
 // Blog-related types

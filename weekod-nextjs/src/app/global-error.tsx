@@ -13,10 +13,10 @@ export default function GlobalError({
   reset: () => void;
 }) {
   // Do not log too aggressively in production; Next.js will log server-side.
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line no-console
-    console.error('GlobalError:', error);
-  }
+  // Note: Avoid console.error in render as it can cause React setState issues
+  // if (process.env.NODE_ENV !== 'production') {
+  //   console.error('GlobalError:', error);
+  // }
 
   return (
     <html>

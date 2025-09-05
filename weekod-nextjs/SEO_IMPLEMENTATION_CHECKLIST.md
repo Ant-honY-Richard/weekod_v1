@@ -72,7 +72,7 @@
 ### Priority Content Creation
 - [ ] **Week 3: AI Web Development Content**
   - [ ] Create pillar page: "AI-Powered Web Development Services"
-  - [ ] Write blog post: "How AI is Revolutionizing Web Development in 2024"
+  - [ ] Write blog post: "How AI is Revolutionizing Web Development in 2025"
   - [ ] Update FAQ section with AI-related questions
   - [ ] Create case study: AI-enhanced project example
 

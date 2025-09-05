@@ -6,6 +6,8 @@ import { PageType } from '@/types';
 import { analytics } from '@/lib/analytics';
 import TestimonialsCarousel from '@/components/ui/TestimonialsCarousel';
 
+type Currency = 'INR' | 'USD' | 'EUR';
+
 interface ContactPageProps {
   setCurrentPage?: (page: PageType) => void;
 }
@@ -16,6 +18,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
     email: '',
     company: '',
     project: '',
+    package: '',
     budget: '',
     message: ''
   });
@@ -83,6 +86,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [fieldValidation, setFieldValidation] = useState<Record<string, boolean>>({});
   const [formStarted, setFormStarted] = useState(false);
+  
+  const [currency, setCurrency] = useState<Currency>('INR');
+  const [userRegion, setUserRegion] = useState<string>('');
 
   // Floating dots animation
   const [dots, setDots] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
@@ -96,7 +102,104 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
       delay: Math.random() * 10
     }));
     setDots(newDots);
+
+    // Auto-detect user region and set appropriate currency
+    const detectUserRegion = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        const countryCode = data.country_code;
+        setUserRegion(countryCode);
+
+        if (countryCode === 'IN') {
+          setCurrency('INR');
+        } else if (['AT', 'BE', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PT', 'SK', 'SI', 'ES'].includes(countryCode)) {
+          setCurrency('EUR');
+        } else {
+          setCurrency('USD');
+        }
+      } catch (error) {
+        console.log('Could not detect region, defaulting to INR');
+        setUserRegion('IN');
+        setCurrency('INR');
+      }
+    };
+
+    detectUserRegion();
   }, []);
+
+  const getBudgetOptions = () => {
+    switch (currency) {
+      case 'USD':
+        return [
+          { value: "", label: "Select budget range" },
+          { value: "$499 - $999 (Starter)", label: "$499 - $999 (Starter)" },
+          { value: "$1,499 - $2,999 (Growth)", label: "$1,499 - $2,999 (Growth)" },
+          { value: "$4,999+ (Pro/Enterprise)", label: "$4,999+ (Pro/Enterprise)" },
+          { value: "Monthly $199-$599 (Maintenance)", label: "Monthly $199-$599 (Maintenance)" },
+          { value: "Performance-based pricing", label: "Performance-based pricing" },
+          { value: "Let's discuss", label: "Let's discuss" }
+        ];
+      case 'EUR':
+        return [
+          { value: "", label: "Select budget range" },
+          { value: "€399 - €799 (Starter)", label: "€399 - €799 (Starter)" },
+          { value: "€1,199 - €2,399 (Growth)", label: "€1,199 - €2,399 (Growth)" },
+          { value: "€3,999+ (Pro/Enterprise)", label: "€3,999+ (Pro/Enterprise)" },
+          { value: "Monthly €159-€479 (Maintenance)", label: "Monthly €159-€479 (Maintenance)" },
+          { value: "Performance-based pricing", label: "Performance-based pricing" },
+          { value: "Let's discuss", label: "Let's discuss" }
+        ];
+      default: // INR
+        return [
+          { value: "", label: "Select budget range" },
+          { value: "₹25K - ₹50K (Starter)", label: "₹25K - ₹50K (Starter)" },
+          { value: "₹75K - ₹1.5L (Growth)", label: "₹75K - ₹1.5L (Growth)" },
+          { value: "₹2L+ (Pro/Enterprise)", label: "₹2L+ (Pro/Enterprise)" },
+          { value: "Monthly ₹10K-₹30K (Maintenance)", label: "Monthly ₹10K-₹30K (Maintenance)" },
+          { value: "Performance-based pricing", label: "Performance-based pricing" },
+          { value: "Let's discuss", label: "Let's discuss" }
+        ];
+    }
+  };
+
+  const getPackageOptions = () => {
+    switch (currency) {
+      case 'USD':
+        return [
+          { value: "", label: "Select a package (optional)" },
+          { value: "Starter Package ($499-$999)", label: "Starter Package ($499-$999)" },
+          { value: "Growth Package ($1,499-$2,999)", label: "Growth Package ($1,499-$2,999)" },
+          { value: "Pro/Enterprise Package ($4,999+)", label: "Pro/Enterprise Package ($4,999+)" },
+          { value: "Custom Quote", label: "Custom Quote" },
+          { value: "Add-on: Ongoing Maintenance", label: "Add-on: Ongoing Maintenance" },
+          { value: "Add-on: AI Growth Automation", label: "Add-on: AI Growth Automation" },
+          { value: "Add-on: Performance Partnership", label: "Add-on: Performance Partnership" }
+        ];
+      case 'EUR':
+        return [
+          { value: "", label: "Select a package (optional)" },
+          { value: "Starter Package (€399-€799)", label: "Starter Package (€399-€799)" },
+          { value: "Growth Package (€1,199-€2,399)", label: "Growth Package (€1,199-€2,399)" },
+          { value: "Pro/Enterprise Package (€3,999+)", label: "Pro/Enterprise Package (€3,999+)" },
+          { value: "Custom Quote", label: "Custom Quote" },
+          { value: "Add-on: Ongoing Maintenance", label: "Add-on: Ongoing Maintenance" },
+          { value: "Add-on: AI Growth Automation", label: "Add-on: AI Growth Automation" },
+          { value: "Add-on: Performance Partnership", label: "Add-on: Performance Partnership" }
+        ];
+      default: // INR
+        return [
+          { value: "", label: "Select a package (optional)" },
+          { value: "Starter Package (₹25K-₹50K)", label: "Starter Package (₹25K-₹50K)" },
+          { value: "Growth Package (₹75K-₹1.5L)", label: "Growth Package (₹75K-₹1.5L)" },
+          { value: "Pro/Enterprise Package (₹2L+)", label: "Pro/Enterprise Package (₹2L+)" },
+          { value: "Custom Quote", label: "Custom Quote" },
+          { value: "Add-on: Ongoing Maintenance", label: "Add-on: Ongoing Maintenance" },
+          { value: "Add-on: AI Growth Automation", label: "Add-on: AI Growth Automation" },
+          { value: "Add-on: Performance Partnership", label: "Add-on: Performance Partnership" }
+        ];
+    }
+  };
 
   const validateField = (name: string, value: string): boolean => {
     let isValid = true;
@@ -218,6 +321,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
           email: '',
           company: '',
           project: '',
+          package: '',
           budget: '',
           message: ''
         });
@@ -269,6 +373,11 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
       project: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+        </svg>
+      ),
+      package: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
         </svg>
       ),
       budget: (
@@ -516,6 +625,35 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
                     </div>
                   </motion.div>
 
+                  {/* Package Selection Field */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.35 }}
+                  >
+                    <label htmlFor="package" className="block text-sm font-medium text-gray-300 mb-2">
+                      Interested Package
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                        {getFieldIcon('package')}
+                      </div>
+                      <select
+                        id="package"
+                        name="package"
+                        value={formData.package}
+                        onChange={handleInputChange}
+                        className="w-full pl-12 pr-4 py-4 bg-[#0A0A12]/50 backdrop-blur-sm border border-[#00F3FF]/30 rounded-xl text-white focus:border-[#00F3FF] focus:outline-none focus:ring-2 focus:ring-[#00F3FF]/20 transition-all duration-300"
+                      >
+                        {getPackageOptions().map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </motion.div>
+
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Project Type Field */}
                     <motion.div
@@ -585,11 +723,11 @@ const ContactPage: React.FC<ContactPageProps> = ({ setCurrentPage }) => {
                           onChange={handleInputChange}
                           className="w-full pl-12 pr-4 py-4 bg-[#0A0A12]/50 backdrop-blur-sm border border-[#00F3FF]/30 rounded-xl text-white focus:border-[#00F3FF] focus:outline-none focus:ring-2 focus:ring-[#00F3FF]/20 transition-all duration-300"
                         >
-                          <option value="">Select budget range</option>
-                          <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
-                          <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
-                          <option value="₹1,00,000+">₹1,00,000+</option>
-                          <option value="Let's discuss">Let&apos;s discuss</option>
+                          {getBudgetOptions().map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </motion.div>

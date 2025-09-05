@@ -114,70 +114,115 @@ export const portfolio = [
 
 export const pricingPackages = [
   {
-    name: 'Basic',
-    price: '₹24,999',
-    originalPrice: '₹45,000',
+    name: 'Starter',
+    price: '₹25K–₹50K',
+    originalPrice: '₹45K–₹75K',
     popular: false,
-    bestFor: 'Small businesses & startups',
-    deliveryTime: '2-3 weeks',
+    bestFor: 'Startups & Small Businesses',
+    deliveryTime: '1–2 Weeks',
+    cta: 'Launch Your First Website',
+    disclaimer: 'Domain & hosting not included',
     paymentOptions: ['50% advance, 50% on delivery', 'EMI options available', 'No hidden charges'],
     features: [
-      'Custom responsive website design',
-      'Up to 5 pages',
-      'AI-powered content optimization',
-      'Basic SEO setup',
-      'Mobile optimization',
-      '1 month post-launch support',
-      'Contact form integration',
-      'Social media integration',
-      'Free SSL certificate',
-      'Basic analytics setup'
-    ]
+      '1–3 Pages (Landing Page / Basic Website)',
+      'Responsive Design (Mobile + Desktop)',
+      'SEO Setup (Meta, Tags, Basics)',
+      'AI-Enhanced Copy Suggestions',
+      'Contact Form Integration',
+      'Social Media Integration',
+      'Basic Analytics Setup',
+      'Free SSL Certificate'
+    ],
+    internationalPrice: '$499–$999',
+    internationalOriginalPrice: '$799–$1,499'
   },
   {
     name: 'Growth',
-    price: '₹54,999',
-    originalPrice: '₹75,000',
+    price: '₹75K–₹1.5L',
+    originalPrice: '₹1.2L–₹2L',
     popular: true,
-    bestFor: 'Growing businesses & e-commerce',
-    deliveryTime: '3-4 weeks',
-    paymentOptions: ['40% advance, 60% on milestones', 'EMI options available', 'GST invoice provided'],
+    bestFor: 'Growing Businesses',
+    deliveryTime: '3–5 Weeks',
+    cta: 'Scale Your Digital Presence',
+    disclaimer: 'Domain & hosting not included',
+    paymentOptions: ['40% advance, 30% milestone, 30% delivery', 'Flexible payment plans', 'GST invoice provided'],
     features: [
-      'Everything in Basic',
-      'Up to 15 pages',
-      'Advanced AI features',
-      'E-commerce functionality',
-      'Advanced SEO optimization',
-      '3 months post-launch support',
-      'Analytics integration',
-      'Performance optimization',
-      'Custom animations',
-      'Blog/CMS integration',
-      'Payment gateway integration',
-      'Inventory management'
+      '5–10 Pages (Company, Services, Portfolio)',
+      'CMS Integration (WordPress / Headless)',
+      'Custom Animations & Transitions',
+      'AI-Driven Content Optimization',
+      'API Integrations (Forms, CRMs, Payments)',
+      'Advanced SEO Optimization',
+      'Performance Optimization',
+      'Blog/Content Management',
+      'Payment Gateway Integration',
+      '3 Months Support & Maintenance'
+    ],
+    internationalPrice: '$1,499–$2,999',
+    internationalOriginalPrice: '$2,499–$4,999'
+  },
+  {
+    name: 'Pro / Enterprise',
+    price: '₹2L+',
+    originalPrice: 'Custom Quote',
+    popular: false,
+    bestFor: 'Enterprises & Custom Platforms',
+    deliveryTime: '6–10 Weeks',
+    cta: 'Build Your Custom AI-Powered Platform',
+    disclaimer: 'Domain & hosting not included',
+    paymentOptions: ['Milestone-based payments', 'Custom payment terms', 'Enterprise billing'],
+    features: [
+      'Unlimited Pages & Features',
+      'Full Custom Web App / Dashboard',
+      'AI + Automation Tools (Chat, Lead Capture)',
+      'Multi-System API Integration',
+      'Priority Support & SLA',
+      'Enterprise-level Security',
+      'Dedicated Project Manager',
+      'Multi-language Support',
+      'Advanced Admin Dashboard',
+      'Custom Functionality'
+    ],
+    internationalPrice: '$4,999+',
+    internationalOriginalPrice: 'Custom Quote'
+  }
+];
+
+export const addOns = [
+  {
+    name: 'Ongoing Maintenance',
+    price: '₹10K–₹30K/month',
+    internationalPrice: '$199–$599/month',
+    features: [
+      'Regular updates & backups',
+      'Security monitoring',
+      'Performance tuning',
+      'Content & SEO upkeep',
+      'Technical support'
     ]
   },
   {
-    name: 'Enterprise',
-    price: '₹99,999+',
-    originalPrice: 'Contact for Quote',
-    popular: false,
-    bestFor: 'Large enterprises & complex projects',
-    deliveryTime: '4-8 weeks',
-    paymentOptions: ['Milestone-based payments', 'Custom payment terms', 'Enterprise billing'],
+    name: 'AI Growth Automation',
+    price: 'Custom Quote',
+    internationalPrice: 'Custom Quote',
     features: [
-      'Everything in Growth',
-      'Unlimited pages',
-      'Custom AI integrations',
-      'Advanced web applications',
-      'API integrations',
-      'Ongoing strategic support',
-      'Custom functionality',
-      'Enterprise-level security',
-      'Dedicated project manager',
-      'Priority support',
-      'Multi-language support',
-      'Advanced admin dashboard'
+      'AI chatbots & assistants',
+      'Lead capture automation',
+      'Analytics & insights',
+      'Personalization engines',
+      'Content generation'
+    ]
+  },
+  {
+    name: 'Performance Partnership',
+    price: 'Low base fee + ROI bonus',
+    internationalPrice: 'Low base fee + ROI bonus',
+    features: [
+      'Reduced upfront costs',
+      'Success-based pricing',
+      'Aligned incentives',
+      'Growth-focused approach',
+      'Long-term partnership'
     ]
   }
 ];

@@ -315,7 +315,7 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
             <div className="inline-block bg-[#0F0F1A] p-1 rounded-full border border-[#00F3FF]/20 mb-6">
               <div className="flex items-center gap-2 px-4 py-2">
                 <span className="animate-pulse w-2 h-2 bg-[#FF00FF] rounded-full"></span>
-                <span className="text-sm text-gray-300">Limited slots available for Q3 2024</span>
+                <span className="text-sm text-gray-300">Limited slots available for Q1 2025</span>
               </div>
             </div>
             <button 

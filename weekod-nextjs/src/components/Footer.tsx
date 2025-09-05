@@ -172,7 +172,7 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
         
         <div className="border-t border-[#00F3FF]/20 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2024 Weekod. All rights reserved. Built with ❤️ and AI.
+            © 2025 Weekod. All rights reserved. Built with ❤️ and AI.
           </p>
           <div className="flex space-x-6 text-sm">
             <motion.a 

@@ -141,30 +141,58 @@ const Navigation: React.FC<NavigationProps> = memo(({
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div
-          className="lg:hidden bg-[#0A0A12]/95 shadow-lg overflow-hidden border-t border-[#00F3FF]/30"
+          className="lg:hidden bg-[#0A0A12]/95 backdrop-blur-md shadow-xl border-t border-[#00F3FF]/20"
         >
-          <div className="container mx-auto px-4 sm:px-6 py-4">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-4">
+          <div className="container mx-auto px-4 sm:px-6 py-6">
+            {/* Navigation Links */}
+            <div className="space-y-2 mb-6">
               {navItems.map((item) => (
                 <button 
                   key={item.value} 
                   onClick={() => handlePageChange(item.value)}
-                  className={`text-center py-3 px-2 font-medium rounded-lg border transition-all text-base sm:text-lg hover:scale-[1.02] ${
+                  className={`w-full text-left py-4 px-4 font-medium rounded-xl border transition-all text-base sm:text-lg hover:scale-[1.01] hover:shadow-sm ${
                     currentPage === item.value 
-                      ? 'text-[#00F3FF] bg-[#00F3FF]/10 border-[#00F3FF]/30' 
-                      : 'text-gray-300 bg-[#0F0F1A] border-[#00F3FF]/20 hover:text-[#00F3FF] hover:border-[#00F3FF]/40'
+                      ? 'text-[#00F3FF] bg-[#00F3FF]/10 border-[#00F3FF]/40 shadow-[0_0_15px_rgba(0,243,255,0.2)]' 
+                      : 'text-gray-200 bg-[#0F0F1A]/80 border-[#00F3FF]/15 hover:text-[#00F3FF] hover:border-[#00F3FF]/30 hover:bg-[#0F0F1A]'
                   }`}
                 >
-                  {item.label}
+                  <div className="flex items-center justify-between">
+                    <span>{item.label}</span>
+                    {currentPage === item.value && (
+                      <svg className="w-5 h-5 text-[#00F3FF]" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                      </svg>
+                    )}
+                  </div>
                 </button>
               ))}
             </div>
+            
+            {/* CTA Button */}
             <button 
               onClick={() => handlePageChange('contact')}
-              className="w-full bg-[#39FF14] text-[#0A0A12] font-bold py-3 px-6 rounded-full relative overflow-hidden text-base sm:text-lg hover:scale-[1.02] transition-transform"
+              className="w-full bg-gradient-to-r from-[#39FF14] to-[#2ecc0f] text-[#0A0A12] font-bold py-4 px-6 rounded-xl relative overflow-hidden text-base sm:text-lg hover:scale-[1.01] transition-all shadow-lg hover:shadow-xl"
             >
-              <span className="relative z-10">Book Consultation</span>
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <span>Book Consultation</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
+              <div className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity"/>
             </button>
+            
+            {/* Quick Contact Info */}
+            <div className="mt-6 pt-4 border-t border-[#00F3FF]/20">
+              <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+                <a href="tel:+918151018502" className="hover:text-[#00F3FF] transition-colors">
+                  📞 +91 8151018502
+                </a>
+                <a href="https://wa.me/918151018502" className="hover:text-[#25D366] transition-colors">
+                  💬 WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}

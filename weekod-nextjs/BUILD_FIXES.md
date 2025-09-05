@@ -51,8 +51,8 @@
 **Fix**: Replaced date-fns import with custom date formatting utility
 - Removed problematic `import { format } from 'date-fns'` from multiple files
 - Created inline `formatDate` utility functions with appropriate formats:
-  - BlogPostPage.tsx: 'MMMM dd, yyyy' format (January 01, 2024)
-  - BlogCard.tsx: 'MMM dd, yyyy' format (Jan 01, 2024)
+  - BlogPostPage.tsx: 'MMMM dd, yyyy' format (January 01, 2025)
+  - BlogCard.tsx: 'MMM dd, yyyy' format (Jan 01, 2025)
 - Avoids all TypeScript type/value import conflicts
 - Applied to `/src/components/pages/BlogPostPage.tsx` and `/src/components/ui/BlogCard.tsx`
 

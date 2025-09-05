@@ -32,7 +32,7 @@ Each contact form submission creates a document with the following structure:
   "project": "website",
   "budget": "growth",
   "message": "I need a new website...",
-  "submittedAt": "2024-01-15T10:30:00.000Z",
+  "submittedAt": "2025-01-15T10:30:00.000Z",
   "ipAddress": "192.168.1.1",
   "userAgent": "Mozilla/5.0..."
 }
