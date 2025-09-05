@@ -75,8 +75,21 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ setCurrentPage }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.06 }}
-                className="bg-[#0F0F1A] rounded-2xl overflow-hidden border border-[#00F3FF]/20 hover:border-[#00F3FF]/40 transition-all"
+                className="bg-[#0F0F1A] rounded-2xl overflow-hidden border border-[#00F3FF]/20 hover:border-[#00F3FF]/40 transition-all relative"
               >
+                {/* Coming Soon Overlay */}
+                <div className="absolute inset-0 bg-[#0A0A12]/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-2xl">
+                  <div className="text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00F3FF]/30 bg-[#00F3FF]/10 mb-3">
+                      <span className="w-2 h-2 rounded-full bg-[#00F3FF] animate-pulse" />
+                      <span className="text-sm font-semibold tracking-wider text-[#00F3FF]">Coming Soon</span>
+                    </div>
+                    <p className="text-xs text-gray-400 max-w-[200px] mx-auto">
+                      This project showcase is currently being prepared
+                    </p>
+                  </div>
+                </div>
+
                 <img
                   src={item.image}
                   alt={item.title}
