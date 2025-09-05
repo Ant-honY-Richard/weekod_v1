@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Fix workspace root inference warning when multiple lockfiles exist
-  outputFileTracingRoot: 'c:/Users/Surya/weekod_v1',
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
@@ -105,7 +103,7 @@ const nextConfig = {
             ],
           },
           {
-            source: '/(.*)\.(?:js|css|png|jpg|jpeg|gif|webp|avif|svg|ico|woff2?)',
+            source: '/(.*)\\.(js|css|png|jpg|jpeg|gif|webp|avif|svg|ico|woff2?)$',
             headers: [
               { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
             ],
