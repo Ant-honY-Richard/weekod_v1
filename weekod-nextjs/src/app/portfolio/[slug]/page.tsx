@@ -125,7 +125,30 @@ export default function PortfolioDetailClientPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A12] text-white">
+    <div className="min-h-screen bg-[#0A0A12] text-white relative">
+      {/* Coming Soon Overlay */}
+      <div className="fixed inset-0 bg-[#0A0A12]/90 backdrop-blur-md z-50 flex items-center justify-center">
+        <div className="text-center max-w-md px-6">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#00F3FF]/30 bg-[#00F3FF]/10 mb-6">
+            <span className="w-3 h-3 rounded-full bg-[#00F3FF] animate-pulse" />
+            <span className="text-lg font-semibold tracking-wider text-[#00F3FF]">Coming Soon</span>
+          </div>
+          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-white">
+            Project Details Coming Soon
+          </h1>
+          <p className="text-gray-400 mb-6 leading-relaxed">
+            We&apos;re currently preparing detailed case studies and project showcases. 
+            Check back soon to see the full details of our work.
+          </p>
+          <button
+            onClick={() => router.back()}
+            className="inline-flex items-center px-6 py-3 rounded-full bg-[#00F3FF] text-[#0A0A12] font-semibold hover:bg-[#00D1E0] transition"
+          >
+            ← Back to Portfolio
+          </button>
+        </div>
+      </div>
+
       {/* Hero */}
       <section className="bg-gradient-to-b from-[#0F0F1A] to-transparent">
         <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
