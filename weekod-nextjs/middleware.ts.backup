@@ -1,0 +1,49 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  const hostname = request.headers.get('host') || '';
+  
+  // Handle direct IP access - redirect to weekod.in
+  if (hostname.includes('216.198.79.1')) {
+    url.hostname = 'weekod.in';
+    url.protocol = 'https:';
+    return NextResponse.redirect(url, 301);
+  }
+  
+  // Redirect www to non-www for consistency
+  if (hostname.startsWith('www.')) {
+    url.hostname = hostname.replace(/^www\./, '');
+    return NextResponse.redirect(url, 301);
+  }
+  
+  // Security headers for better SEO and security score
+  const response = NextResponse.next();
+  
+  // Add security headers
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  
+  // Add canonical URL header for SEO
+  if (!hostname.includes('localhost') && !hostname.includes('127.0.0.1')) {
+    response.headers.set('Link', `<https://${hostname}${url.pathname}>; rel="canonical"`);
+  }
+  
+  return response;
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - api routes (they have their own logic)
+     */
+    '/((?!_next/static|_next/image|favicon.ico|api).*)',
+  ],
+};

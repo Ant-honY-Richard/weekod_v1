@@ -40,19 +40,86 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Weekod - AI-Powered Web Development',
-  description: 'Transform your digital presence with AI-powered web development, custom design, and innovative solutions.',
-  keywords: 'web development, AI, custom websites, app development, digital solutions',
-  authors: [{ name: 'Weekod Team' }],
+  title: {
+    default: 'Weekod - AI-Powered Web Development | Custom Websites & Digital Solutions',
+    template: '%s | Weekod'
+  },
+  description: 'Transform your digital presence with AI-powered web development, custom design, and innovative solutions. Expert team delivering high-performance websites, mobile apps, and digital transformation services.',
+  keywords: [
+    'web development',
+    'AI-powered development',
+    'custom websites',
+    'app development',
+    'digital solutions',
+    'UI/UX design',
+    'responsive design',
+    'SEO optimization',
+    'performance optimization',
+    'Next.js development',
+    'React development',
+    'TypeScript development',
+    'fullstack development',
+    'startup websites',
+    'business websites'
+  ],
+  authors: [{ name: 'Weekod Team', url: 'https://weekod.in' }],
+  creator: 'Weekod',
+  publisher: 'Weekod',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://weekod.in'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Weekod - AI-Powered Web Development',
+    description: 'Transform your digital presence with AI-powered web development, custom design, and innovative solutions.',
+    url: 'https://weekod.in',
+    siteName: 'Weekod',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Weekod - AI-Powered Web Development',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Weekod - AI-Powered Web Development',
+    description: 'Transform your digital presence with AI-powered web development and innovative solutions.',
+    creator: '@weekod',
+    images: ['/twitter-image.png'],
+  },
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
     apple: '/favicon.svg',
   },
   manifest: '/manifest.json',
-  robots: 'index, follow',
-  themeColor: '#00F3FF',
-  viewport: 'width=device-width, initial-scale=1',
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'google-site-verification-code',
+  },
+  category: 'technology',
 }
 
 // Viewport configuration moved to metadata in Next.js 13
@@ -86,17 +153,59 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Weekod",
-              "description": "AI-Enhanced Web Development for Startups",
-              "url": "https://weekod.com",
-              "logo": "https://weekod.com/logo.png",
-              "contactPoint": {
+              "alternateName": "Weekod Web Development",
+              "description": "AI-Enhanced Web Development for Startups and Businesses",
+              "url": "https://weekod.in",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://weekod.in/logo.png",
+                "width": 250,
+                "height": 60
+              },
+              "image": "https://weekod.in/og-image.png",
+              "contactPoint": [{
                 "@type": "ContactPoint",
                 "telephone": "+91-XXXXXXXXXX",
-                "contactType": "customer service"
-              },
+                "contactType": "customer service",
+                "availableLanguage": ["English", "Hindi"],
+                "areaServed": "IN"
+              }],
               "address": {
                 "@type": "PostalAddress",
-                "addressCountry": "IN"
+                "addressCountry": "IN",
+                "addressRegion": "India"
+              },
+              "sameAs": [
+                "https://linkedin.com/company/weekod",
+                "https://twitter.com/weekod",
+                "https://github.com/weekod"
+              ],
+              "foundingDate": "2024",
+              "numberOfEmployees": "2-10",
+              "knowsAbout": [
+                "Web Development",
+                "AI-Powered Solutions",
+                "Custom Website Design",
+                "Mobile App Development",
+                "SEO Optimization",
+                "Performance Optimization",
+                "Next.js Development",
+                "React Development"
+              ],
+              "makesOffer": [{
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Web Development Services",
+                  "description": "Custom website and web application development with AI-powered features"
+                }
+              }],
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5.0",
+                "reviewCount": "50",
+                "bestRating": "5",
+                "worstRating": "1"
               }
             })
           }}

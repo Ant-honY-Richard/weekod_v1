@@ -174,10 +174,33 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
               </div>
               <div className="mt-6 flex items-center">
                 <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00F3FF] to-[#0A0A12] border border-[#00F3FF]/30 flex items-center justify-center text-xs font-bold">
-                      {String.fromCharCode(64 + i)}
-                    </div>
+                  {[
+                    {
+                      src: "https://res.cloudinary.com/djxoeyk1a/image/upload/v1757146482/flux-1-kontext-pro_Aspect_ratio__1_1__c_1_cyksbl.jpg",
+                      alt: "Reviewer A"
+                    },
+                    {
+                      src: "https://res.cloudinary.com/djxoeyk1a/image/upload/v1757146553/flux-1-kontext-dev_Aspect_ratio__1_1__c_1_czcq4x.png",
+                      alt: "Reviewer B"
+                    },
+                    {
+                      src: "https://res.cloudinary.com/djxoeyk1a/image/upload/v1757146562/imagen-4.0-ultra-generate-preview-06-06_Aspect_ratio__1_1__c_1_z6om4n.png",
+                      alt: "Reviewer C"
+                    },
+                    {
+                      src: "https://res.cloudinary.com/djxoeyk1a/image/upload/v1757146571/qwen-image-prompt-extend_Aspect_ratio__1_1__c_1_pwrxks.png",
+                      alt: "Reviewer D"
+                    }
+                  ].map((reviewer, i) => (
+                    <div 
+                      key={i} 
+                      className="w-8 h-8 rounded-full border border-[#00F3FF]/30 bg-cover bg-center"
+                      style={{
+                        backgroundImage: `url(${reviewer.src})`
+                      }}
+                      role="img"
+                      aria-label={reviewer.alt}
+                    />
                   ))}
                 </div>
                 <div className="ml-3 text-sm text-gray-400">

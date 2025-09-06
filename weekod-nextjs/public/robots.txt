@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /test-results/
+
+# Host
+Host: https://weekod.in
+
+# Sitemaps
+Sitemap: https://weekod.in/sitemap.xml

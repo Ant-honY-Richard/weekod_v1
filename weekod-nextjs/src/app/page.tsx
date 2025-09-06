@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { PageType } from '@/types';
 import { pageVariants, pageTransition } from '@/data';
 import { useOptimizedScroll } from '@/hooks/useOptimizedScroll';
@@ -15,13 +15,31 @@ const ServiceWorkerRegistration = dynamic(() => import('@/components/ui/ServiceW
 const ResourcePreloader = dynamic(() => import('@/components/ui/ResourcePreloader'), { ssr: false });
 const PerformanceMonitor = dynamic(() => import('@/components/ui/PerformanceMonitor'), { ssr: false });
 
-// Lazy load non-critical page components
-const AboutPage = lazy(() => import('@/components/pages/AboutPage'));
-const ServicesPage = lazy(() => import('@/components/pages/ServicesPage'));
-const ProcessPage = lazy(() => import('@/components/pages/ProcessPage'));
-const PortfolioPage = lazy(() => import('@/components/pages/PortfolioPage'));
-const PricingPage = lazy(() => import('@/components/pages/PricingPage'));
-const ContactPage = lazy(() => import('@/components/pages/ContactPage'));
+// Use Next.js dynamic imports instead of React lazy for better SSR support
+const AboutPage = dynamic(() => import('@/components/pages/AboutPage'), { 
+  loading: () => <PageLoader />,
+  ssr: true 
+});
+const ServicesPage = dynamic(() => import('@/components/pages/ServicesPage'), { 
+  loading: () => <PageLoader />,
+  ssr: true 
+});
+const ProcessPage = dynamic(() => import('@/components/pages/ProcessPage'), { 
+  loading: () => <PageLoader />,
+  ssr: true 
+});
+const PortfolioPage = dynamic(() => import('@/components/pages/PortfolioPage'), { 
+  loading: () => <PageLoader />,
+  ssr: true 
+});
+const PricingPage = dynamic(() => import('@/components/pages/PricingPage'), { 
+  loading: () => <PageLoader />,
+  ssr: true 
+});
+const ContactPage = dynamic(() => import('@/components/pages/ContactPage'), { 
+  loading: () => <PageLoader />,
+  ssr: true 
+});
 
 // Loading component
 const PageLoader = () => (
@@ -54,36 +72,12 @@ export default function App() {
   const renderPage = () => {
     const pageComponents = {
       home: <HomePage setCurrentPage={setCurrentPage} />,
-      about: (
-        <Suspense fallback={<PageLoader />}>
-          <AboutPage setCurrentPage={setCurrentPage} />
-        </Suspense>
-      ),
-      services: (
-        <Suspense fallback={<PageLoader />}>
-          <ServicesPage setCurrentPage={setCurrentPage} />
-        </Suspense>
-      ),
-      process: (
-        <Suspense fallback={<PageLoader />}>
-          <ProcessPage setCurrentPage={setCurrentPage} />
-        </Suspense>
-      ),
-      portfolio: (
-        <Suspense fallback={<PageLoader />}>
-          <PortfolioPage setCurrentPage={setCurrentPage} />
-        </Suspense>
-      ),
-      pricing: (
-        <Suspense fallback={<PageLoader />}>
-          <PricingPage setCurrentPage={setCurrentPage} />
-        </Suspense>
-      ),
-      contact: (
-        <Suspense fallback={<PageLoader />}>
-          <ContactPage setCurrentPage={setCurrentPage} />
-        </Suspense>
-      )
+      about: <AboutPage setCurrentPage={setCurrentPage} />,
+      services: <ServicesPage setCurrentPage={setCurrentPage} />,
+      process: <ProcessPage setCurrentPage={setCurrentPage} />,
+      portfolio: <PortfolioPage setCurrentPage={setCurrentPage} />,
+      pricing: <PricingPage setCurrentPage={setCurrentPage} />,
+      contact: <ContactPage setCurrentPage={setCurrentPage} />,
     };
 
     return pageComponents[currentPage];
